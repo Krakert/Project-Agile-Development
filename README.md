@@ -1,4 +1,4 @@
-Welkom bij onze Gitlab.
+**Welkom bij onze Gitlab.**
 
 Voor informatie over dit project kan je ook gebruik maken van de Wiki:
 
