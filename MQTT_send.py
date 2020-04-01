@@ -8,7 +8,7 @@ import os
 
 #Setup GPIO
 GPIO.setmode(GPIO.BCM)                                                                              # Setup the pinlayout
-GPIO.setwarnings(False)                                                                             # disable warnings    
+GPIO.setwarnings(False)                                                                             # disable warnings
 
 COLOM = [14, 15, 18]                                                                                # Input pins for the Coloms
 ROW = [23, 24, 25, 8]                                                                               # Input pins for the Row
@@ -22,7 +22,7 @@ KEYPAD = [                                                                      
     [["*", 0], [0, 0], ["#", 0]]
 ]
 
-running = True  
+running = True
 
 def checkPressed():                                                                                 # this will check the buttons
     for i in range (len(ROW)):                                                                      # pressed
@@ -60,9 +60,3 @@ while running:
     if valuePressedKey is not None:
         client.publish("krakers/PAD", valuePressedKey)
     time.sleep(0.0001)
-
-
-
-
-
-
