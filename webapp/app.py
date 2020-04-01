@@ -22,14 +22,40 @@ posts = [
 @app.route('/')
 @app.route('/home')
 @app.route('/Home')
+@app.route('/index')
+@app.route('/Index')
 def hello_world():
-    return render_template('home.html', posts=posts)
+    return render_template('index.html', posts=posts)
 
 
 @app.route('/Sudoku')
 @app.route('/sudoku')
 def sudoku():
     return render_template('sudoku.html', title='Sudoku')
+
+
+@app.route('/Minigames')
+@app.route('/minigames')
+def minigames():
+    return render_template('minigames.html', title='Minigames')
+
+
+@app.route('/Beweeg')
+@app.route('/beweeg')
+def beweeg():
+    return render_template('beweeg.html', title='Beweeg')
+
+
+@app.route('/Ondersteuning')
+@app.route('/ondersteuning')
+def ondersteuning():
+    return render_template('ondersteuning.html', title='Ondersteuning')
+
+
+@app.route('/Bestel')
+@app.route('/bestel')
+def bestel():
+    return render_template('bestel.html', title='Bestel')
 
 
 # debug = True houdt de server running!

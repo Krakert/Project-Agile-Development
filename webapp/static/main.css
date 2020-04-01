@@ -1,80 +1,59 @@
-body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+body{
+  background: #000;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+.navbar-header{
+  background: #A40243;
+  background: -moz-linear-gradient(left, #A40243 0%, #2E12CB 100%, #656975 100%);
+  background: -webkit-linear-gradient(left, #A40243 0%, #2E12CB 100%, #656975 100%);
+  background: linear-gradient(to right, #A40243 0%, #2E12CB 100%, #656975 100%);
+  text-align: center;
+  border-radius: 90px;
+  border-style: ridge;
+  color:#fff;
 }
 
-.bg-steel {
-  background-color: #5f788a;
+a{
+  color: white;
+  font-size: 24px;
+  padding: 24px;
+  text-align: center;
+}
+.btn{
+    height:100%;
+    width:100%;
+    margin-left: -50%;
+
+    position:relative;
+    top:50%;
+    left:50%;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    line-height: 30px;
+    padding: 30px;
+    border-radius: 50px;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
+    box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164);
+    display: inline-block;}
+.btn:hover {
+background: #fff;
+color: #000
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+.btn:active {
+background: #fff;
+color: #000;
 }
 
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
-}
-
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
-}
-
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-}
-
-.article-title {
-  color: #444444;
-}
-
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
-}
-
-.article-content {
-  white-space: pre-line;
-}
-
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
-}
-
-.article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
-}
-
-.article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
-}
-
-.article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
-}
-
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-
-.account-heading {
-  font-size: 2.5rem;
+.btn-color{
+  background: #DB00AF;
+  background: -moz-linear-gradient(left, #DB00AF 0%, #6B12CB 100%, #750053 100%);
+  background: -webkit-linear-gradient(left, #DB00AF 0%, #6B12CB 100%, #750053 100%);
+  background: linear-gradient(to right, #DB00AF 0%, #6B12CB 100%, #750053 100%);
 }
