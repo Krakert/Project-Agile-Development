@@ -1,5 +1,7 @@
-**Welkom bij onze Gitlab.**
+**Design files**
 
-Voor informatie over dit project kan je ook gebruik maken van de Wiki:
+Hier zijn alle ontwerpen van het fysieke ontwerp te vinden.
 
-[Link to WIKI](https://gitlab.fdmci.hva.nl/krakers/pad-project-team-3/-/wikis/home)
+Voor een technishe tekening verwijs ik jullie naar [deze](https://gitlab.fdmci.hva.nl/krakers/pad-project-team-3/blob/CAD/Design_PAD_project.pdf) PDF.
+
+Getekend in Autodesk Inventor 2020 door Stefan de Kraker, 02-04-2020.
