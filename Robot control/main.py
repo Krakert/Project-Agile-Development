@@ -4,11 +4,8 @@ from nao import nao
 
 def main():
     NAO = nao("PADrick")
-    openSession = NAO.connect("padrick.local", 9559)
+    openSession = NAO.connect("127.0.0.1", 50270)
     NAO.talk.say("Hello", openSession)
-    NAO.leftLeg.talkAndWalk("Hallo Milo", openSession)
-
-
 
 if __name__ == '__main__':
     main()
