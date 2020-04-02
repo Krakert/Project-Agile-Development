@@ -10,10 +10,11 @@ import os
 GPIO.setmode(GPIO.BCM)                                                                              # Setup the pinlayout
 GPIO.setwarnings(False)                                                                             # disable warnings
 
-COLOM = [14, 15, 18]                                                                                # Input pins for the Coloms
+COLOM = [14, 15, 20]                                                                                # Input pins for the Coloms
 ROW = [23, 24, 25, 8]                                                                               # Input pins for the Row
-GPIO.setup(COLOM, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)                                              # Setup the inputs pins
-GPIO.setup(ROW, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)                                                # with a pull down
+GPIO.setup(COLOM, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)                                              # Setup the inputs pins
+GPIO.setup(ROW, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)                                                # with a pull down
+GPIO.setup(21, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 KEYPAD = [                                                                                          # Grid for keypad
     [[1, 0], [2, 0], [3, 0]],
@@ -43,11 +44,15 @@ def checkConnection():
     if response == 0:
         return True
 
+
+def on_disconnect(client, userdata, rc):
+    client.connect(broker)
+
 #Setup MQTT
 broker="mqtt.hva-robots.nl"
 client = mqtt.Client("Raspberry_pi")
 client.username_pw_set(username="krakers",password="kuNH5LNWptsGrPfL6Azh")
-client.connect(broker)
+
 
 while not running:
     if checkConnection():
@@ -58,5 +63,7 @@ while not running:
 while running:
     valuePressedKey = checkPressed()
     if valuePressedKey is not None:
+        client.on_disconnect = on_disconnect
+        client.connect(broker, port = 1883, keepalive = 1)
         client.publish("krakers/PAD", valuePressedKey)
     time.sleep(0.0001)
