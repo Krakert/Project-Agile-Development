@@ -71,7 +71,7 @@ def main():
             nao.arm.moveArm(openSession, "left", 1, ["ElbowRoll"], [-2], 0.3)
             dataFromMqtt = "5"
         elif dataFromMqtt == "8":
-            nao.leg.talkAndWalk(openSession, "Wat leuk zo`n oplevering digitaal", 2, [0.2, 0])
+            nao.leg.talkAndWalk(openSession, "Wat leuk zo`n oplevering digitaal", 0, [0.2, 0])
             updateToZeo()
 if __name__ == '__main__':
     main()
