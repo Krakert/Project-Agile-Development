@@ -6,8 +6,8 @@ from head import head
 class nao:
     name = None
     arm = arm()
-    leftLeg = leg("Left Leg")
-    talk = audio()
+    leg = leg()
+    audio = audio()
     head = head()
 
     def __init__(self, name):
