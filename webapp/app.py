@@ -31,8 +31,12 @@ def hello_world():
 @app.route('/Sudoku')
 @app.route('/sudoku')
 def sudoku():
-    return render_template('sudoku.html', title='Sudoku')
+    return render_template('minigames_sudoku.html', title='Sudoku')
 
+@app.route('/Rekenen')
+@app.route('/rekenen')
+def Rekenen():
+    return render_template('minigames_rekenen.html', title='Rekenen')
 
 @app.route('/Minigames')
 @app.route('/minigames')
