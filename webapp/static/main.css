@@ -66,3 +66,9 @@ p{
   right: 25%;
   width: 50%;
 }
+
+.carousel-inner > .item >img,
+.carousel-inner > .item > a > img{
+  width: 70%;
+  margin: auto;
+}

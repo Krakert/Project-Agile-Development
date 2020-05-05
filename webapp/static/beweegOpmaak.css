@@ -41,7 +41,7 @@
 		--web-action-target: Beweeg___SOLO_Dance.html;
 		cursor: pointer;
 	}
-	#_Pngtree_latin_dancing_hand_pa {
+	#groupDancing {
     text-align:  center;
     overflow: visible;
     position: absolute;
@@ -59,7 +59,7 @@
     left:55%;
     top: 168px;
 	}
-	#_Pngtree_fitness_dancing_raise {
+	#fitness {
     text-align:  center;
     overflow: visible;
     position: absolute;
