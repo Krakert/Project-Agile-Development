@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='beweegOpmaak.css') }}">
     <link rel="stylesheet" type="text/css" href="../static/beweegOpmaak.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <!-- if else statement maak je aan door de '% tekens'-->
     {% if title %}
@@ -28,47 +31,66 @@
 <body>
 <div id="Beweeg">
   <div class ="navbar-header">
-  <div class = "container">
-  <a class ="navbar-brand" href="/">Home</a>
+        <div class = "container">
+        <a class ="navbar-brand" href="/">Home</a>
+        </div>
+  </div>
+</div>
+<div class="container text-center">
+  <h1>Click maar!</h1>
+  <div class="row">
+    <div class="col-md-4">
+    	<img id="groupDancing" class="img-fluid" src="img/group_dance.png" srcset="static\img\group_dance.png 1x, static\img\group_dance@2x.png 2x">
+      <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x" data-toggle="modal" data-target="#playVideoGroupDance">
+    </div>
+
+    <div class="col-md-4">
+    	<img id="exercise" class="img-fluid" src="img/workout.png" srcset="static\img\workout.png 1x, static\img\workout@2x.png 2x">
+      <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x" data-toggle="modal" data-target="#playVideoExercise">
+    </div>
+
+    <div class="col-md-4">
+      <img id="fitness" class="img-fluid" src="static/img/solo_dance.png" srcset="static\img\solo_dance.png 1x, static\img\solo_dance.png@2x.png 2x">
+      <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x" data-toggle="modal" data-target="#playVideoSoloDance">
+    </div>
+  </div>
+
+<!-- Modal = popup -->
+<div class="modal fade" id="playVideoGroupDance">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <video width="100%" controls>
+          <source  src="static/videos/groupDance.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="playVideoExercise">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <video width="100%" controls>
+          <source  src="static/videos/exercise.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="playVideoSoloDance">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <video width="100%" controls>
+          <source  src="static/videos/soloDance.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
-</div>
-	<svg class="Polygon_1_ca" viewBox="0 0 225 145">
-		<linearGradient id="Polygon_1_ca" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
-			<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
-			<stop offset="1" stop-color="#808080" stop-opacity="1"></stop>
-		</linearGradient>
-		<path fill="url(#Polygon_1_ca)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" onclick="application.goToTargetView(event)" id="Polygon_1_ca" d="M 112.4999847412109 0 L 146.25 82.16666412353516 L 225 145 L 112.5 125.6666564941406 L 0 145 L 78.75 82.16666412353516 Z">
-		</path>
-	</svg>
-	<svg class="Polygon_2_cc" viewBox="0 0 225 145">
-		<linearGradient id="Polygon_2_cc" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
-			<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
-			<stop offset="1" stop-color="#808080" stop-opacity="1"></stop>
-		</linearGradient>
-		<path fill="url(#Polygon_2_cc)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" onclick="application.goToTargetView(event)" id="Polygon_2_cc" d="M 112.4999847412109 0 L 147.3749847412109 81.68333435058594 L 225 145 L 112.5 126.6333236694336 L 0 145 L 77.625 81.68333435058594 Z">
-		</path>
-	</svg>
-	<svg class="Polygon_3_ce" viewBox="0 0 225 145">
-		<linearGradient id="Polygon_3_ce" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
-			<stop offset="0" stop-color="#fff" stop-opacity="1"></stop>
-			<stop offset="1" stop-color="#808080" stop-opacity="1"></stop>
-		</linearGradient>
-		<path fill="url(#Polygon_3_ce)" stroke="rgba(112,112,112,1)" stroke-width="1px" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" onclick="application.goToTargetView(event)" id="Polygon_3_ce" d="M 112.4999847412109 0 L 145.1249847412109 82.65000152587891 L 225 145 L 112.5 124.6999893188477 L 0 145 L 79.875 82.65000152587891 Z">
-		</path>
-	</svg>
-	<img id="groupDancing" src="img/group_dance.png" srcset="static\img\group_dance.png 1x, static\img\group_dance@2x.png 2x"/>
-	<img id="exercise" src="img/workout.png" srcset="static\img\workout.png 1x, static\img\workout@2x.png 2x">
-  <!--img id ="exercise" src="static\img/workout.png"-->
-	<img id="fitness" src="static/img/solo_dance.png" srcset="static\img\solo_dance.png 1x, static\img\solo_dance.png@2x.png 2x">
-	<div onclick="application.goToTargetView(event)" id="SOLO_DANCE">
-		<span>SOLO DANCE</span>
-	</div>
-	<div onclick="application.goToTargetView(event)" id="GROUP_DANCE">
-		<span>GROUP DANCE</span>
-	</div>
-	<div onclick="application.goToTargetView(event)" id="WORKOUT">
-		<span>WORKOUT</span>
-	</div>
 </body>
 </html>
