@@ -1,4 +1,4 @@
-class audio:
+class audio():
 
     def say(self, text,session):
         textToSpeechService = session.service("ALTextToSpeech")

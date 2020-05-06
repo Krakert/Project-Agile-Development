@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #import installed libraries
-import qi
+import naoqi
 from nao import nao
 import paho.mqtt.client as mqtt
 
@@ -14,7 +14,9 @@ client.username_pw_set(username="krakers", password="kuNH5LNWptsGrPfL6Azh")
 
 # Setup for the Nao robot
 NAO = nao("PADrick")
-openSession = NAO.connect("127.0.0.1", 55938)
+IP_ADRES = "127.0.0.1"
+PORT = 52597    # Use port 9559 for Online robot, for now Offline robot
+openSession = NAO.connect(IP_ADRES, PORT)
 
 # Variables
 dataFromMqtt = ""
@@ -22,12 +24,11 @@ dataFromMqtt = ""
 client.connect(broker)
 client.subscribe(topic)
 
-
 # Callback function for MQTT Broker
 def on_message(client, userdata, msg):
     global dataFromMqtt
     dataFromMqtt = str(msg.payload.decode("utf-8"))
-
+# Set dataFromMqtt back to Null
 def updateToZeo():
     global dataFromMqtt
     dataFromMqtt = ""
@@ -41,7 +42,7 @@ def main():
     nao.audio.say("Welokm bij de oplevering", openSession)
     #NAO.runBuildInAnimation(openSession)       # Werkt door de Corona dus niet
 
-    nao.head.moveHead(openSession, ["HeadYaw", "HeadPitch"], [0,0], [2,2])
+    nao.head.moveHead(openSession, ["HeadYaw", "HeadPitch"], [0,0], [2,2])  # kijk recht uit
 
     while True:
         client.on_message = on_message
