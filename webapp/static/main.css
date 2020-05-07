@@ -80,6 +80,20 @@ color: #000;
   -webkit-background-size: cover;
   background-size: cover;
 }
+.carousel-caption{
+  bottom : 40%;
+}
+
+.carousel-caption h5{
+  font-size: 45px;
+  text-transform: uppercase;
+}
+
+.carousel-caption p{
+  font-size : 24px;
+  color: black;
+  font-weight: bolder;
+}
 
 img {
   display: block;
