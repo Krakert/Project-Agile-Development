@@ -50,7 +50,8 @@
     const ID = "krakers";
     const passWord = "kuNH5LNWptsGrPfL6Azh";
     // New topic for WebApp message`s
-    const topic = "krakers/PAD";
+    const topicMain = "krakers/PAD";
+    const topicNAO = "krakers/PAD/NAO/SAY";
     // Make new client
     client = new Paho.MQTT.Client(host, "home");
 
@@ -59,7 +60,11 @@
 
     // Clear the old status, just to be sure
     function onConnect() {
-        client.subscribe(topic);
+        client.subscribe(topicMain);
+        client.subscribe(topicNAO);
+        var message = new Paho.MQTT.Message(a + "+" + b);
+        message.destinationName = topicNAO;
+        client.send(message);
     }
 
     var status = true;
@@ -70,12 +75,10 @@
             window.location.href = '/';
         } else if (message.payloadString === '*') {
             if (document.getElementById('submit')) {
-                console.log("Oleh")
                 check();
             } else {
                 repeat();
             }
-
         } else {
             document.getElementById('input').value = document.getElementById('input').value + message.payloadString;
         }
@@ -95,10 +98,10 @@
         let antwoord = a + b;
         if (antwoord == input.value) {
             textField.innerHTML = "Dat is helemaal goed!";
-            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Next</button>";
+            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Ga door</button>";
         } else {
             textField.innerHTML = "Helaas, volgende keer beter.";
-            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Next</button>";
+            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Ga door</button>";
         }
     }
 </script>
