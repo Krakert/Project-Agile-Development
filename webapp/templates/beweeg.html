@@ -27,70 +27,106 @@
         {% endif %}
     <meta charset="utf-8">
     <title>Beweeg</title>
-  </head>
+    <!--Download the Paho MQTT lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+            type="text/javascript">
+    </script>
+    <script>
+        // Diffent Host address, see:
+        // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+        const host = "ws://mqtt.hva-robots.nl/mqtt";
+        const ID = "krakers";
+        const passWord = "kuNH5LNWptsGrPfL6Azh";
+        // New topic for WebApp message`s
+        const topic = "krakers/PAD";
+        // Make new client
+        client = new Paho.MQTT.Client(host, 'beweeg');
+
+        // Connect
+        client.connect({userName: ID, password: passWord, onSuccess: onConnect});
+        // When you have connection, sub
+        function onConnect() {client.subscribe(topic);}
+
+        // If there is a message, redirect.
+        client.onMessageArrived = function (message) {
+            console.log("Message Arrived: " + message.payloadString);
+            if (message.payloadString === '#') {
+                window.location.href = '/';
+            }
+        }
+    </script>
+</head>
 <body>
 <div id="Beweeg">
-  <div class ="navbar-header">
-        <div class = "container">
-        <a class ="navbar-brand" href="/">Home</a>
+    <div class="navbar-header">
+        <div class="container">
+            <a class="navbar-brand" href="/">Home</a>
         </div>
-  </div>
+    </div>
 </div>
 <div class="container text-center">
-  <h1>Click maar!</h1>
-  <div class="row">
-    <div class="col-md-4">
-    	<img id="groupDancing" class="img-fluid" src="img/group_dance.png" srcset="static\img\group_dance.png 1x, static\img\group_dance@2x.png 2x">
-      <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x" data-toggle="modal" data-target="#playVideoGroupDance">
+    <h1>Click maar!</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <img id="groupDancing" class="img-fluid" src="img/group_dance.png"
+                 srcset="static\img\group_dance.png 1x, static\img\group_dance@2x.png 2x">
+            <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x"
+                 data-toggle="modal" data-target="#playVideoGroupDance">
+        </div>
+
+        <div class="col-md-4">
+            <img id="exercise" class="img-fluid" src="img/workout.png"
+                 srcset="static\img\workout.png 1x, static\img\workout@2x.png 2x">
+            <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x"
+                 data-toggle="modal" data-target="#playVideoExercise">
+        </div>
+
+        <div class="col-md-4">
+            <img id="fitness" class="img-fluid" src="static/img/solo_dance.png"
+                 srcset="static\img\solo_dance.png 1x, static\img\solo_dance.png@2x.png 2x">
+            <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x"
+                 data-toggle="modal" data-target="#playVideoSoloDance">
+        </div>
     </div>
 
-    <div class="col-md-4">
-    	<img id="exercise" class="img-fluid" src="img/workout.png" srcset="static\img\workout.png 1x, static\img\workout@2x.png 2x">
-      <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x" data-toggle="modal" data-target="#playVideoExercise">
+    <!-- Modal = popup -->
+    <div class="modal fade" id="playVideoGroupDance">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <video width="100%" controls>
+                        <source src="static/videos/groupDance.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-4">
-      <img id="fitness" class="img-fluid" src="static/img/solo_dance.png" srcset="static\img\solo_dance.png 1x, static\img\solo_dance.png@2x.png 2x">
-      <img class="play-btn" src="static/img/play.png" srcset="static\img\play.png 1x, static\img\play@2x.png 2x" data-toggle="modal" data-target="#playVideoSoloDance">
+    <div class="modal fade" id="playVideoExercise">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <video width="100%" controls>
+                        <source src="static/videos/exercise.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-<!-- Modal = popup -->
-<div class="modal fade" id="playVideoGroupDance">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <video width="100%" controls>
-          <source  src="static/videos/groupDance.mp4" type="video/mp4">
-        </video>
-      </div>
+    <div class="modal fade" id="playVideoSoloDance">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <video width="100%" controls>
+                        <source src="static/videos/soloDance.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-<div class="modal fade" id="playVideoExercise">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <video width="100%" controls>
-          <source  src="static/videos/exercise.mp4" type="video/mp4">
-        </video>
-      </div>
+    <div onclick="application.goToTargetView(event)" id="WORKOUT">
+        <span>WORKOUT</span>
     </div>
-  </div>
-</div>
-
-<div class="modal fade" id="playVideoSoloDance">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <video width="100%" controls>
-          <source  src="static/videos/soloDance.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 </body>
 </html>
