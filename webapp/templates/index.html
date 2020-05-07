@@ -13,8 +13,6 @@
 
     <!-- url_for searches for a file in a location-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-
-
     <!--<link rel="stylesheet"  href="../static/main.css">
     <link rel="stylesheet" href="/css/main.css">-->
     <!-- if else statement maak je aan door de '% tekens'-->
@@ -29,16 +27,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
             type="text/javascript">
     </script>
-    <script type="text/javascript" language="JavaScript">
-        // Diffent Host, see :
+    <script>
+        // Diffent Host address, see:
         // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
         const host = "ws://mqtt.hva-robots.nl/mqtt";
         const ID = "krakers";
         const passWord = "kuNH5LNWptsGrPfL6Azh";
         // New topic for WebApp message`s
-        const topic = "krakers/PAD/WEB";
+        const topic = "krakers/PAD";
         // Make new client
-        client = new Paho.MQTT.Client(host, "Webclient");
+        client = new Paho.MQTT.Client(host, "home");
 
         // Connect
         client.connect({
@@ -47,14 +45,26 @@
             onSuccess: onConnect
         });
 
+        // Clear the old status, just to be sure
         function onConnect() {
             client.subscribe(topic);
-            // Gen you go back to the home page the MQTT data will become null
-            var message = new Paho.MQTT.Message('');
-            // Send to the right and new /WEB topic
-            message.destinationName = topic;
-            client.send(message);
+
         }
+
+        // If there is a message, redirect.
+        client.onMessageArrived = function (message) {
+            console.log("Message Arrived: " + message.payloadString);
+            if (message.payloadString === '1') {
+                window.location.href = '/beweeg';
+            } else if (message.payloadString === '2') {
+                window.location.href = '/minigames';
+            } else if (message.payloadString === '3') {
+                window.location.href = '/bestel';
+            } else if (message.payloadString === '4') {
+                window.location.href = '/ondersteuning';
+            }
+        }
+
     </script>
 </head>
 
