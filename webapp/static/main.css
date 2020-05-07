@@ -84,15 +84,13 @@ color: #000;
   bottom : 40%;
 }
 
-.carousel-caption h5{
-  font-size: 45px;
-  text-transform: uppercase;
-}
-
 .carousel-caption p{
   font-size : 24px;
   color: black;
   font-weight: bolder;
+  font-family: sans-serif;
+  text-align: center;
+  text-shadow: 0.5px 0.5px #fff;
 }
 
 .carousel-caption h5{
@@ -100,9 +98,18 @@ color: #000;
   text-transform: uppercase;
   letter-spacing:2px;
   margin-top:25px;
-  font-family: merienda;
+  text-shadow: 2px 2px #000;
 }
 
+.carousel-caption a{
+  text-transform: uppercase;
+  text-shadow: 2px 2px #000;
+  background: #262626;
+  padding: 10px 30px;
+  display: inline-block;
+  color: #fff;
+  margin-top: 15px;
+}
 img {
   display: block;
   max-width: 100%;
