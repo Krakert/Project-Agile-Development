@@ -58,7 +58,7 @@ color: #000;
   background: linear-gradient(to right, #DB00AF 0%, #6B12CB 100%, #750053 100%);
 }
 
-p{
+#ondersteuningParagraaf{
   color: white;
   text-align: center;
   position: absolute;
@@ -77,4 +77,11 @@ img {
   display: block;
   max-width: 100%;
   height: 100%;
+}
+
+#frame001{
+  border: 2px solid black;
+  background-color: lightgray;
+  border-radius:2px;
+  text-align: center;
 }
