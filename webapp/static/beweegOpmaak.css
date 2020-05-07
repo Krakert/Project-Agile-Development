@@ -1,12 +1,21 @@
 
+.navbar-header{
+	height: 70px;
+}
+.navbar-brand{
+	font-size: 36px;
+}
+
 h1{
 	margin-bottom: 50px !important;
 	color: white;
 }
 .play-btn{
-	width: 50px;
+	width: 50%;
+	height: 50%;
 	position: relative;
 	top: -50%;
+	left: 35%;
 	cursor : pointer;
 	transition: 0.5s;
 	opacity: 0;
