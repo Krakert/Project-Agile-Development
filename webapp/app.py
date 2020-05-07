@@ -1,21 +1,31 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
+from flask_mqtt import Mqtt
 
 app = Flask(__name__)
 
-posts = [
-    {
-        'author': 'Malik bohr',
-        'title': 'Blog post 1',
-        'content': 'First post content',
-        'date_posted': 'May 29, 2020'
-    },
-    {
-        'author': 'Albert Einstein',
-        'title': 'Blog post 2',
-        'content': 'Second post content',
-        'date_posted': 'May 30, 2020'
-    }
-]
+# Mqtt Setup
+app.config['MQTT_BROKER_URL'] = 'mqtt.hva-robots.nl'
+app.config['MQTT_BROKER_PORT'] = 1883
+app.config['MQTT_USERNAME'] = 'krakers'
+app.config['MQTT_PASSWORD'] = 'kuNH5LNWptsGrPfL6Azh'
+app.config['MQTT_REFRESH_TIME'] = 1.0  # refresh time in seconds
+# Start connection
+mqtt = Mqtt(app)
+
+dataFromMqtt = ""
+
+
+# Connect to the right topic
+@mqtt.on_connect()
+def handle_connect(client, userdata, flags, rc):
+    mqtt.subscribe('krakers/PAD/WEB')
+
+
+# Get a new message
+@mqtt.on_message()
+def handle_mqtt_message(client, userdata, msg):
+    global dataFromMqtt
+    dataFromMqtt = str(msg.payload.decode("utf-8"))
 
 
 # routes aangemaakt zodat er genavigeerd kan worden!
@@ -24,14 +34,15 @@ posts = [
 @app.route('/Home')
 @app.route('/index')
 @app.route('/Index')
-def hello_world():
-    return render_template('index.html', posts=posts)
+def main():
+    return render_template('index.html')
 
 
 @app.route('/Sudoku')
 @app.route('/sudoku')
 def sudoku():
     return render_template('sudoku.html', title='Sudoku')
+
 
 
 @app.route('/Minigames')
@@ -43,6 +54,9 @@ def minigames():
 @app.route('/Beweeg')
 @app.route('/beweeg')
 def beweeg():
+    global dataFromMqtt
+    if dataFromMqtt == '#':
+        return render_template('index.html')
     return render_template('beweeg.html', title='Beweeg')
 
 

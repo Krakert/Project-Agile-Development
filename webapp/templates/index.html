@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <!-- voor styling -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- url_for searches for a file in a location-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
@@ -18,35 +19,73 @@
     <link rel="stylesheet" href="/css/main.css">-->
     <!-- if else statement maak je aan door de '% tekens'-->
     {% if title %}
-    <title> Game - {{title}}</title>
+        <title> Game - {{ title }}</title>
     {% else %}
         <title>Home</title>
-        {% endif %}
+    {% endif %}
     <meta charset="utf-8">
     <title>Sudoku</title>
-  </head>
+    <!--Download the Paho MQTT lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+            type="text/javascript">
+    </script>
+    <script type="text/javascript" language="JavaScript">
+        // Diffent Host, see :
+        // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+        const host = "ws://mqtt.hva-robots.nl/mqtt";
+        const ID = "krakers";
+        const passWord = "kuNH5LNWptsGrPfL6Azh";
+        // New topic for WebApp message`s
+        const topic = "krakers/PAD/WEB";
 
-      <body>
-        <div class ="navbar-header">
-        <div class = "container">
-        <a class ="navbar-brand" href="/">Home</a>
-      </div>
+        client = new Paho.MQTT.Client(host, "Webclient");
+
+        client.connect({
+            userName: ID,
+            password: passWord,
+            onSuccess: onConnect
+        });
+
+        function onConnect() {
+            client.subscribe(topic);
+            // Gen you go back to the home page the MQTT data will become null
+            var message = new Paho.MQTT.Message('');
+            // Send to the right and new /WEB topic
+            message.destinationName = topic;
+            client.send(message);
+        }
+
+
+    </script>
+</head>
+
+<body>
+<div class="navbar-header">
+    <div class="container">
+        <a class="navbar-brand" href="/">Home</a>
     </div>
+</div>
+<br>
+<div class="container">
+    <a href="/beweeg" class="btn btn-color btn-primary">Beweeg</a>
+    <a href="/Minigames" class="btn btn-primary">Minigames</a>
     <br>
-    <div class ="container">
-            <a href="/beweeg" class="btn btn-color btn-primary">Beweeg</a>
-            <a href="/Minigames" class="btn btn-primary">Minigames</a>
-            <br>
-            <a href="/bestel" class="btn btn-color btn-primary">Bestel</a>
-            <br>
-            <a href="/ondersteuning" class="btn btn-primary">Ondersteuning</a>
-      </div>
-    </div>
-      </body>
-        <!-- Optional JavaScript, not yet used-->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+    <a href="/bestel" class="btn btn-color btn-primary">Bestel</a>
+    <br>
+    <a href="/ondersteuning" class="btn btn-primary">Ondersteuning</a>
+</div>
+</div>
+</body>
+<!-- Optional JavaScript, not yet used-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
 </html>
