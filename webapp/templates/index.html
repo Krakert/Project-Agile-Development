@@ -39,7 +39,7 @@
         const topic = "krakers/PAD/WEB";
         // Make new client
         client = new Paho.MQTT.Client(host, "Webclient");
-
+        // Connect
         client.connect({
             userName: ID,
             password: passWord,
