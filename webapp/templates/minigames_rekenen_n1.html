@@ -94,10 +94,10 @@
     function check() {
         let antwoord = a + b;
         if (antwoord == input.value) {
-            textField.innerHTML = "Correct";
+            textField.innerHTML = "Dat is helemaal goed!";
             textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Next</button>";
         } else {
-            textField.innerHTML = "Incorrect";
+            textField.innerHTML = "Helaas, volgende keer beter.";
             textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Next</button>";
         }
     }
