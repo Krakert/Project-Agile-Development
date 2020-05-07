@@ -34,14 +34,10 @@
 </div>
 
 <div id="frame001">
-    <h2>Rekenen, kies een niveau:</h2>
+    <h2>Rekenen</h2>
     <hr/>
-    Voor niveau 1, toets: "1"<br>
-    Voor niveau 2, toets: "2"<br>
-    Voor niveau 3, toets: "3"<br>
-    Voor niveau 4, toets: "4"<br>
-    <br>
-
+    <p id="textField"></p>
+    <p id="textField1"></p>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
@@ -70,14 +66,41 @@
     // If there is a message, do something with it.
     client.onMessageArrived = function (message) {
         console.log(message.payloadString);
-        if (message.payloadString === '1') {
-            window.location.href = '/rekenen/niveau1';
-        } else if (message.payloadString === '#') {
+        if (message.payloadString === '#') {
             window.location.href = '/';
+        } else if (message.payloadString === '*') {
+            if (document.getElementById('submit')) {
+                console.log("Oleh")
+                check();
+            } else {
+                repeat();
+            }
+
+        } else {
+            document.getElementById('input').value = document.getElementById('input').value + message.payloadString;
         }
     }
 
+    function repeat() {
+        location.reload();
+    }
 
+    var a = Math.floor(Math.random() * 10 + 1);
+    var b = Math.floor(Math.random() * 10 + 1);
+
+    textField.innerHTML = a + "<br />" + "+" + "<br />" + b + "<br />" + "__________";
+    textField1.innerHTML = "<input type=text id=input /> <button type=\"button\" id=\"submit\" onclick=check()>controleer</button>";
+
+    function check() {
+        let antwoord = a + b;
+        if (antwoord == input.value) {
+            textField.innerHTML = "Correct";
+            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Next</button>";
+        } else {
+            textField.innerHTML = "Incorrect";
+            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Next</button>";
+        }
+    }
 </script>
 </body>
 </html>

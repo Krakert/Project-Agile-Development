@@ -11,7 +11,6 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-
 @app.route('/Sudoku')
 @app.route('/sudoku')
 def sudoku():
@@ -23,6 +22,9 @@ def sudoku():
 def Rekenen():
     return render_template('minigames_rekenen.html', title='Rekenen')
 
+@app.route('/rekenen/niveau1')
+def RekenenN1():
+    return render_template('minigames_rekenen_n1.html', title='Rekenen som')
 
 @app.route('/Minigames')
 @app.route('/minigames')

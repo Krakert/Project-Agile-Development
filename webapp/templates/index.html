@@ -39,17 +39,9 @@
         client = new Paho.MQTT.Client(host, "home");
 
         // Connect
-        client.connect({
-            userName: ID,
-            password: passWord,
-            onSuccess: onConnect
-        });
-
+        client.connect({userName: ID, password: passWord, onSuccess: onConnect});
         // Clear the old status, just to be sure
-        function onConnect() {
-            client.subscribe(topic);
-
-        }
+        function onConnect() {client.subscribe(topic);}
 
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
