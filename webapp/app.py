@@ -39,6 +39,7 @@ def main():
     return render_template('index.html')
 
 
+
 @app.route('/Sudoku')
 @app.route('/sudoku')
 def sudoku():
@@ -61,7 +62,8 @@ def minigames():
 def beweeg():
     global dataFromMqtt
     if dataFromMqtt == '#':
-        return render_template('index.html')
+        render_template('index.html')
+        return redirect('/')
     return render_template('beweeg.html', title='Beweeg')
 
 
