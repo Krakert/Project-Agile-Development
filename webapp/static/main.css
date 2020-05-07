@@ -72,6 +72,13 @@ color: #000;
   width: 100%;
   margin: auto;
 }*/
+.carousel-item{
+  height: 100vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
 
 img {
   display: block;
