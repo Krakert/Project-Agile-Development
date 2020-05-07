@@ -52,6 +52,9 @@ def main():
         qi.async(animation_player.run, wave)
         qi.async(audioPlayer.playFile, "/home/nao/wav/goosser4_1587549697.mp3")
         tts.say("aaah altijd leuk zo een liedje van vroeger.")
+    else:
+        tts.say("Sorry, deze optie bestaat niet.")
+
 
 if __name__ == "__main__":
 
