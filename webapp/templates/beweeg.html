@@ -31,6 +31,7 @@
 
         setInterval(() => {
             var xmlhttp = new XMLHttpRequest();
+
             xmlhttp.addEventListener("load", (res) => {
                 if (!contents) {
                     contents = res.currentTarget.responseText

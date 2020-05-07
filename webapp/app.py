@@ -14,6 +14,7 @@ mqtt = Mqtt(app)
 
 dataFromMqtt = ""
 
+
 # Connect to the right topic
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
