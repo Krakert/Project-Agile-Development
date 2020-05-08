@@ -66,4 +66,4 @@ while running:
         client.on_disconnect = on_disconnect
         client.connect(broker, port = 1883, keepalive = 1)
         client.publish("krakers/PAD", valuePressedKey)
-    time.sleep(0.0001)
+    time.sleep(0.1)
