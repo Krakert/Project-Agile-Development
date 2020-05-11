@@ -33,7 +33,7 @@ def on_message(client, userdata, msg):
     # global dataFromMqtt
     if msg.topic == topicSpeak:
         dataToSay = str(msg.payload.decode("utf-8"))
-        print(dataToSay)
+        #print(dataToSay)
         NAO.audio.say(dataToSay, openSession)
         updateToZeo()
     else:
