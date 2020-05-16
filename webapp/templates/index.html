@@ -40,20 +40,29 @@
 
         // Connect
         client.connect({userName: ID, password: passWord, onSuccess: onConnect});
+
         // Clear the old status, just to be sure
-        function onConnect() {client.subscribe(topic);}
+        function onConnect() {
+            client.subscribe(topic);
+        }
 
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
             console.log("Message Arrived: " + message.payloadString);
-            if (message.payloadString === '1') {
-                window.location.href = '/beweeg';
-            } else if (message.payloadString === '2') {
-                window.location.href = '/minigames';
-            } else if (message.payloadString === '3') {
-                window.location.href = '/bestel';
-            } else if (message.payloadString === '4') {
-                window.location.href = '/ondersteuning';
+
+            switch (message.payloadString) {
+                case '1':
+                    window.location.href = '/beweeg';
+                    break;
+                case '2':
+                    window.location.href = '/minigames';
+                    break;
+                case '3':
+                    window.location.href = '/bestel';
+                    break;
+                case '4':
+                    window.location.href = '/ondersteuning';
+                    break;
             }
         }
 
@@ -61,20 +70,24 @@
 </head>
 
 <body>
-<div class="navbar-header">
-    <div class="container">
-        <a class="navbar-brand" href="/">Home</a>
-    </div>
+<div class="container">
+    <a href="/" class="btn btn-color">Home</a>
 </div>
 <br>
 <div class="container">
-    <a href="/beweeg" class="btn btn-color btn-primary">Beweeg</a>
-    <a href="/Minigames" class="btn btn-primary">Minigames</a>
-    <br>
-    <a href="/bestel" class="btn btn-color btn-primary">Bestel</a>
-    <br>
-    <a href="/ondersteuning" class="btn btn-primary">Ondersteuning</a>
+    <a href="/beweeg" class="btn btn-color">Beweeg</a>
 </div>
+<br>
+<div class="container">
+    <a href="/Minigames" class="btn btn-primary">Minigames</a>
+</div>
+<br>
+<div class="container">
+    <a href="/bestel" class="btn btn-color btn-primary">Bestel</a>
+</div>
+<br>
+<div class="container">
+    <a href="/ondersteuning" class="btn btn-primary">Ondersteuning</a>
 </div>
 </body>
 <!-- Optional JavaScript, not yet used-->
