@@ -1,9 +1,12 @@
 
 .navbar-header{
 	height: 70px;
+	color: black;
+	left: 50%;
 }
 .navbar-brand{
 	font-size: 36px;
+
 }
 
 h1{

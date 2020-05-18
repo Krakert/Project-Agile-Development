@@ -6,7 +6,6 @@ body {
     margin: auto;
     height: 100%;
     width: 800px;
-
     top: 50%;
     left: 50%;
     font-family: "Segoe UI", Arial, sans-serif;
@@ -42,9 +41,8 @@ a {
     margin: auto;
     height: 100%;
     width: 800px;
-
     top: 50%;
-    left: 50%;
+    left:50%;
     color: rgb(255, 255, 255);
     font-size: 30px;
     line-height: 30px;

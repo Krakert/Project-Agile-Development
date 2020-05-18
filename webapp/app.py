@@ -49,6 +49,11 @@ def ondersteuning():
 def bestel():
     return render_template('bestel.html', title='Bestel')
 
+@app.route('/Nieuws')
+@app.route('/nieuws')
+def nieuws():
+    return render_template('nieuws.html', title='nieuws')
+
 
 # debug = True, keeps the server alive
 if __name__ == '__main__':
