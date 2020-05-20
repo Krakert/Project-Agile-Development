@@ -4,7 +4,7 @@ body {
 
 .navbar-header {
     margin: auto;
-    height: 100%;
+    height: 70px;
     width: 800px;
     top: 50%;
     left: 50%;
@@ -14,21 +14,27 @@ body {
     background: -webkit-linear-gradient(left, #A40243 0%, #2E12CB 100%, #656975 100%);
     background: linear-gradient(to right, #A40243 0%, #2E12CB 100%, #656975 100%);
     text-align: center;
-    border-radius: 90px;
+    border-radius: 10px;
     border-style: ridge;
     color: #fff;
 }
+.navbar-brand{
+  font-size: 36px;
+}
 
 .navbar-header:hover {
-    background: #fff;
-    color: #000
+  background: #fff;
+  color: #000 !important;
 }
 
 .navbar-header:active {
     background: #fff;
-    color: #000
+    color: #000!important;
 }
 
+.navbar-header:hover a{
+  color: #000 !important;
+}
 
 a {
     color: white;
@@ -38,16 +44,16 @@ a {
 }
 
 .btn {
-    margin: auto;
+    margin:auto !important;
     height: 100%;
     width: 800px;
     top: 50%;
-    left:50%;
+    left:50% !important;
     color: rgb(255, 255, 255);
     font-size: 30px;
     line-height: 30px;
     padding: 30px;
-    border-radius: 50px;
+    border-radius: 10px;
     font-family: "Segoe UI", Arial, sans-serif;
     font-weight: normal;
     text-decoration: none;
@@ -61,7 +67,7 @@ a {
 
 .btn:hover {
     background: #fff;
-    color: #000
+    color: #000;
 }
 
 .btn:active {
