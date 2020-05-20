@@ -41,14 +41,16 @@ a {
     font-size: 24px;
     padding: 24px;
     text-align: center;
+    text-decoration: none;
 }
 
 .btn {
+  position: relative;
     margin:auto !important;
     height: 100%;
     width: 800px;
     top: 50%;
-    left:50% !important;
+
     color: rgb(255, 255, 255);
     font-size: 30px;
     line-height: 30px;
@@ -62,7 +64,7 @@ a {
     text-transform: none;
     background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
     /*box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164);*/
-    display: inline-block;
+    display: block;
 }
 
 .btn:hover {
