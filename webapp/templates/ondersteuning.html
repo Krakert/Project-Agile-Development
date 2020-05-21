@@ -5,16 +5,6 @@
     <link rel="stylesheet" type="text/css" href ="../static/CSS/main.css">
     <meta charset="utf-8">
     <title></title>
-    <script>
-        var url = 'http://newsapi.org/v2/top-headlines?' +
-            'country=nl&' +
-            'apiKey=c88871f2a24e405c8751e26c9a805e61';
-        var req = new Request(url);
-        fetch(req)
-            .then(function (response) {
-                console.log(response.json());
-            })
-    </script>
 </head>
 <body>
 <div class="navbar-header">
@@ -24,7 +14,7 @@
 </div>
 <br>
 <div class="container">
-    <div id="ondersteuningParagraaf"
+    <div id="ondersteuningParagraaf">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
