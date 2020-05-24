@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <link rel="icon" type="image/png" href="../static/img/favicon.ico">
     <!-- Global var -->
     <script>
         let idField = null;
@@ -41,64 +42,33 @@
             document.getElementById(idField).value = message.payloadString;
         }
     </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
 
-        .wrap {
-            padding: 2em 1em;
-            width: 400px;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @media (min-width: 30em) {
-            .wrap {
-                width: 490px;
-            }
-
-            .sudoku-board input {
-                font-size: 24px;
-                font-size: 1.5rem;
-            }
-
-            .sudoku-board .candidates {
-                font-size: .8em;
-            }
-        }
-    </style>
 </head>
 <body>
 <div class="navbar-header">
-    <div class="container">
-        <a class="navbar-brand" href="/Minigames">Back</a>
-    </div>
-    <div class="wrap">
-
-        <!--the only required html-->
-        <div id="sudoku" class="sudoku-board">
-        </div>
-        <!--solve buttons-->
-        Solve:
-        <button type="button" class="js-solve-step-btn">One Step</button>
-        <button type="button" class="js-solve-all-btn">All</button>
-        <script>
-
-            const sudokuJS = $('#sudoku').sudokuJS({
-                difficulty: "medium"
-            });
-
-            $(".js-solve-step-btn").on("click", sudokuJS.solveStep);
-            $(".js-solve-all-btn").on("click", sudokuJS.solveAll);
-        </script>
-    </div>
+    <a class="navbar-brand" href="/Minigames">Back</a>
 </div>
+<!--the only required html-->
+<div id="sudoku" class="sudoku-board">
+    <script>
+        const sudokuJS = $('#sudoku').sudokuJS({
+            difficulty: "medium"
+        });
+
+    </script>
+</div>
+<div>
+    <!--solve buttons-->
+    Solve:
+    <button type="button" class="btn-solve">One Step</button>
+    <button type="button" class="btn-solve">All</button>
+    <script>
+        $(".js-solve-step-btn").on("click", sudokuJS.solveStep);
+        $(".js-solve-all-btn").on("click", sudokuJS.solveAll);
+    </script>
+</div>
+
+
 <script>
     // Get the ID of the sudoku cell, to fill in the MQTT value
     $("body").on("click", '.sudoku-board-cell', function () {

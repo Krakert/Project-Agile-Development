@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <link rel="icon" type="image/png" href="../static/img/favicon.ico">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,15 +44,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
         type="text/javascript">
 </script>
+<script type="text/javascript" src="../static/JS/config.js"></script>
 <script>
     // Diffent Host address, see:
     // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
-    const host = "ws://mqtt.hva-robots.nl/mqtt";
-    const ID = "krakers";
-    const passWord = "kuNH5LNWptsGrPfL6Azh";
+    const host = config().HOST_MQTT_BROKER;
+    const ID = config().MQTT_ID;
+    const passWord = config().MQTT_PASSWORD;
     // New topic for WebApp message`s
-    const topicMain = "krakers/PAD";
-    const topicNAO = "krakers/PAD/NAO/SAY";
+    const topic = config().MQTT_TOPIC_MAIN;
+    const topicNAO = config().MQTT_TOPIC_SAY;
     // Make new client
     client = new Paho.MQTT.Client(host, "home");
 

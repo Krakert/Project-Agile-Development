@@ -3,37 +3,34 @@ body {
 }
 
 .navbar-header {
-    margin: auto;
+    margin-bottom: 30px;
     height: 70px;
     width: 100%;
     top: 50%;
     left: 50%;
     font-family: "Segoe UI", Arial, sans-serif;
     background: #A40243;
-    background: -moz-linear-gradient(left, #A40243 0%, #2E12CB 100%, #656975 100%);
-    background: -webkit-linear-gradient(left, #A40243 0%, #2E12CB 100%, #656975 100%);
-    background: linear-gradient(to right, #A40243 0%, #2E12CB 100%, #656975 100%);
     text-align: center;
     border-radius: 10px;
-    border-style: ridge;
     color: #fff;
 }
-.navbar-brand{
-  font-size: 36px;
+
+.navbar-brand {
+    font-size: 36px;
 }
 
 .navbar-header:hover {
-  background: #fff;
-  color: #000 !important;
+    background: #fff;
+    color: #000 !important;
 }
 
 .navbar-header:active {
     background: #fff;
-    color: #000!important;
+    color: #000 !important;
 }
 
-.navbar-header:hover a{
-  color: #000 !important;
+.navbar-header:hover a {
+    color: #000 !important;
 }
 
 a {
@@ -45,25 +42,19 @@ a {
 }
 
 .btn {
-  position: relative;
-    margin:auto !important;
+    position: relative;
+    margin-bottom: 10px;
     height: 100%;
     width: 100%;
     top: 50%;
-
     color: rgb(255, 255, 255);
     font-size: 30px;
     line-height: 30px;
     padding: 30px;
     border-radius: 10px;
+    border: none;
     font-family: "Segoe UI", Arial, sans-serif;
-    font-weight: normal;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
-    /*box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164);*/
+    background-color: rgb(35, 136, 203);
     display: block;
 }
 
@@ -78,10 +69,7 @@ a {
 }
 
 .btn-color {
-    background: #DB00AF;
-    background: -moz-linear-gradient(left, #DB00AF 0%, #6B12CB 100%, #750053 100%);
-    background: -webkit-linear-gradient(left, #DB00AF 0%, #6B12CB 100%, #750053 100%);
-    background: linear-gradient(to right, #DB00AF 0%, #6B12CB 100%, #750053 100%);
+    background-color: #6B12CB;
 }
 
 #ondersteuningParagraaf {

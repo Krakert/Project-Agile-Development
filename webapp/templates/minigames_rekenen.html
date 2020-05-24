@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <link rel="icon" type="image/png" href="../static/img/favicon.ico">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- url_for searches for a file in a location-->
-    <link rel="stylesheet" type="text/css" href ="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -39,7 +40,6 @@
     Voor niveau 1, toets: "1"<br>
     Voor niveau 2, toets: "2"<br>
     Voor niveau 3, toets: "3"<br>
-    Voor niveau 4, toets: "4"<br>
     <br>
 
 </div>
@@ -47,14 +47,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
         type="text/javascript">
 </script>
+<script type="text/javascript" src="../static/JS/config.js"></script>
 <script>
     // Diffent Host address, see:
     // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
-    const host = "ws://mqtt.hva-robots.nl/mqtt";
-    const ID = "krakers";
-    const passWord = "kuNH5LNWptsGrPfL6Azh";
+    const host = config().HOST_MQTT_BROKER;
+    const ID = config().MQTT_ID;
+    const passWord = config().MQTT_PASSWORD;
     // New topic for WebApp message`s
-    const topic = "krakers/PAD";
+    const topic = config().MQTT_TOPIC_MAIN;
     // Make new client
     client = new Paho.MQTT.Client(host, "home");
 
@@ -70,14 +71,21 @@
     // If there is a message, do something with it.
     client.onMessageArrived = function (message) {
         console.log(message.payloadString);
-        if (message.payloadString === '1') {
-            window.location.href = '/rekenen/niveau1';
-        } else if (message.payloadString === '#') {
-            window.location.href = '/';
+        switch (message.payloadString) {
+            case '1':
+                window.location.href = '/rekenen/niveau1';
+                break;
+            case '2':
+                window.location.href = '/rekenen/niveau2';
+                break;
+            case '3':
+                window.location.href = '/rekenen/niveau3';
+                break;
+            case '#':
+                window.location.href = '/';
+                break;
         }
     }
-
-
 </script>
 </body>
 </html>
