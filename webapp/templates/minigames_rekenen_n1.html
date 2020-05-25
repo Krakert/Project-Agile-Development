@@ -13,7 +13,8 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- url_for searches for a file in a location-->
-    <link rel="stylesheet" type="text/css" href ="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/minigamesOpmaak.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -34,11 +35,16 @@
     </div>
 </div>
 
-<div id="frame001">
+<div id="frame">
     <h2>Rekenen</h2>
     <hr/>
-    <p id="textField"></p>
-    <p id="textField1"></p>
+    <h4>
+        <div class="number1">
+            <p id="textField" class="text-static"></p>
+        <div>
+
+                <p id="textField1"></p>
+    </h4>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
@@ -90,20 +96,38 @@
         location.reload();
     }
 
-    var a = Math.floor(Math.random() * 10 + 1);
-    var b = Math.floor(Math.random() * 10 + 1);
+    const MAX_NUMBER = 15;
+    var a;
+    var b;
+    const operators = ['+', '-'];
+    const operator = Math.floor(Math.random() * operators.length);
+    console.log(operator);
 
-    textField.innerHTML = a + "<br />" + "+" + "<br />" + b + "<br />" + "__________";
-    textField1.innerHTML = "<input type=text id=input /> <button type=\"button\" id=\"submit\" onclick=check()>controleer</button>";
+    if (operator === 1) {
+        b = Math.floor(Math.random() * MAX_NUMBER + 1);
+        a = Math.floor(Math.random() * MAX_NUMBER + b);
+        if (a > MAX_NUMBER) { a = MAX_NUMBER;}
+    } else {
+        a = Math.floor(Math.random() * MAX_NUMBER + 1);
+        b = Math.floor(Math.random() * MAX_NUMBER + 1);
+    }
+    textField.innerHTML = a + " " + operators[operator] + " " + b + "<br />" + "__________";
+    textField1.innerHTML = "<input type=text class='input-field' id=input /> <br> <button  class='submit-button' \"button\" id=\"submit\" onclick=check()>controleer</button>";
 
     function check() {
-        let antwoord = a + b;
+        var antwoord;
+        if (operator === 0) {
+            antwoord = a + b;
+        } else if (operator === 1) {
+            antwoord = a - b;
+        }
+        console.log(antwoord);
         if (antwoord == input.value) {
             textField.innerHTML = "Dat is helemaal goed!";
-            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Ga door</button>";
+            textField1.innerHTML = "<button id=repeatQuestion class='submit-button' onclick=repeat()>Ga door</button>";
         } else {
             textField.innerHTML = "Helaas, volgende keer beter.";
-            textField1.innerHTML = "<button id=repeatQuestion onclick=repeat()>Ga door</button>";
+            textField1.innerHTML = "<button id=repeatQuestion class='submit-button' onclick=repeat()>Ga door</button>";
         }
     }
 </script>

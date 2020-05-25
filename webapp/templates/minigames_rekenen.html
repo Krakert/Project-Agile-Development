@@ -14,6 +14,7 @@
 
     <!-- url_for searches for a file in a location-->
     <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/minigamesOpmaak.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -34,14 +35,23 @@
     </div>
 </div>
 
-<div id="frame001">
+<div id="frame">
     <h2>Rekenen, kies een niveau:</h2>
     <hr/>
-    Voor niveau 1, toets: "1"<br>
-    Voor niveau 2, toets: "2"<br>
-    Voor niveau 3, toets: "3"<br>
-    <br>
+    <h4>
+        <div class="niveau1">
+            <a type="text" href="/rekenen/niveau1" class="text-click"> Voor niveau 1, toets: "1" (plus en min sommen t/m 15)</a>
+        </div>
+        <div class="niveau2">
+            <a type="text" href="/rekenen/niveau2" class="text-click"> Voor niveau 2, toets: "2" (plus, min & keer sommen t/m 15)</a>
+        </div>
+        <div>
+            <a type="text" href="/rekenen/niveau3" class="text-click"> Voor niveau 3, toets: "3" (plus, min, keer sommen t/m 50)</a>
+        </div>
 
+
+        <br>
+    </h4>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
