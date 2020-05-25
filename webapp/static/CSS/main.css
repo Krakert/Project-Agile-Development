@@ -16,6 +16,9 @@ body {
 }
 
 .navbar-brand {
+    position: relative;
+    width: max-content;
+    text-align: center;
     font-size: 36px;
 }
 
@@ -133,9 +136,9 @@ img {
     height: 100%;
 }
 
-#frame001 {
-    border: 2px solid black;
+#frame {
     background-color: lightgray;
     border-radius: 2px;
     text-align: center;
 }
+
