@@ -1,3 +1,48 @@
-#sudoku_picture{
-	
+.text-click {
+    color: black;
+    text-align: center;
+    line-height: normal;
+    padding: 1px;
+}
+
+.text-click:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.text-static {
+    color: black;
+    text-align: center;
+    line-height: normal;
+    padding: 1px;
+}
+
+.input-field {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    height: 50px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: none;
+    border-image: initial;
+    border-radius: 10px;
+}
+
+.submit-button {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: rgb(35, 136, 203);
+}
+
+.submit-button:hover {
+    background: #fff;
+    color: #000;
 }
