@@ -128,17 +128,19 @@
     color: white;
 }
 
-.btn-solve {
+.btn-solve-one {
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10px;
-    left: 25%;
     height: 100%;
     width: 50%;
     top: 50%;
     color: rgb(255, 255, 255);
     font-size: 30px;
     line-height: 30px;
-    padding: 30px;
+    padding: 20px;
+    border: none;
     border-radius: 10px;
     font-family: "Segoe UI", Arial, sans-serif;
     font-weight: normal;
@@ -146,6 +148,30 @@
     font-style: normal;
     font-variant: normal;
     text-transform: none;
-    background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
+    background-color: rgb(35, 136, 203);
+    display: block;
+}
+
+.btn-solve-all {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    height: 100%;
+    width: 50%;
+    top: 50%;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    line-height: 30px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    background-color: rgb(35, 136, 203);
     display: block;
 }
