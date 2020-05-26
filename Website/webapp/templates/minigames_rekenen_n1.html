@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="icon" type="image/png" href="../static/img/favicon.ico">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- voor styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- url_for searches for a file in a location-->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/minigamesOpmaak.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- if else statement maak je aan door de '% tekens'-->
+    {% if title %}
+        <title> Game - {{ title }}</title>
+    {% else %}
+        <title>Home</title>
+    {% endif %}
+    <title></title>
+</head>
+<body>
+<div class="navbar-header">
+    <div class="container">
+        <a class="navbar-brand" href="/">Home</a>
+    </div>
+</div>
+
+<div id="frame">
+    <h2>Rekenen</h2>
+    <hr/>
+    <h4>
+        <div class="number1">
+            <p id="textField" class="text-static"></p>
+        <div>
+
+                <p id="textField1"></p>
+    </h4>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+        type="text/javascript">
+</script>
+<script type="text/javascript" src="../static/JS/config.js"></script>
+<script>
+    // Diffent Host address, see:
+    // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+    const host = config().HOST_MQTT_BROKER;
+    const ID = config().MQTT_ID;
+    const passWord = config().MQTT_PASSWORD;
+    // New topic for WebApp message`s
+    const topic = config().MQTT_TOPIC_MAIN;
+    const topicNAO = config().MQTT_TOPIC_SAY;
+    // Make new client
+    client = new Paho.MQTT.Client(host, "home");
+
+    // Connect
+    client.connect({userName: ID, password: passWord, onSuccess: onConnect});
+
+    // Clear the old status, just to be sure
+    function onConnect() {
+        client.subscribe(topicMain);
+        client.subscribe(topicNAO);
+        var message = new Paho.MQTT.Message(a + "+" + b);
+        message.destinationName = topicNAO;
+        client.send(message);
+    }
+
+    var status = true;
+    // If there is a message, do something with it.
+    client.onMessageArrived = function (message) {
+        console.log(message.payloadString);
+        if (message.payloadString === '#') {
+            window.location.href = '/';
+        } else if (message.payloadString === '*') {
+            if (document.getElementById('submit')) {
+                check();
+            } else {
+                repeat();
+            }
+        } else {
+            document.getElementById('input').value = document.getElementById('input').value + message.payloadString;
+        }
+    }
+
+    function repeat() {
+        location.reload();
+    }
+
+    const MAX_NUMBER = 15;
+    var a;
+    var b;
+    const operators = ['+', '-'];
+    const operator = Math.floor(Math.random() * operators.length);
+    console.log(operator);
+
+    if (operator === 1) {
+        b = Math.floor(Math.random() * MAX_NUMBER + 1);
+        a = Math.floor(Math.random() * MAX_NUMBER + b);
+        if (a > MAX_NUMBER) { a = MAX_NUMBER;}
+    } else {
+        a = Math.floor(Math.random() * MAX_NUMBER + 1);
+        b = Math.floor(Math.random() * MAX_NUMBER + 1);
+    }
+    textField.innerHTML = a + " " + operators[operator] + " " + b + "<br />" + "__________";
+    textField1.innerHTML = "<input type=text class='input-field' id=input /> <br> <button  class='submit-button' \"button\" id=\"submit\" onclick=check()>controleer</button>";
+
+    function check() {
+        var antwoord;
+        if (operator === 0) {
+            antwoord = a + b;
+        } else if (operator === 1) {
+            antwoord = a - b;
+        }
+        console.log(antwoord);
+        if (antwoord == input.value) {
+            textField.innerHTML = "Dat is helemaal goed!";
+            textField1.innerHTML = "<button id=repeatQuestion class='submit-button' onclick=repeat()>Ga door</button>";
+        } else {
+            textField.innerHTML = "Helaas, volgende keer beter.";
+            textField1.innerHTML = "<button id=repeatQuestion class='submit-button' onclick=repeat()>Ga door</button>";
+        }
+    }
+</script>
+</body>
+</html>

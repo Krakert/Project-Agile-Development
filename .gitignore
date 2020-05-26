@@ -1,0 +1,7 @@
+*.idea
+*.pyc
+*.xml
+*/static/JS/config.js
+/Robot control/
+/Robot control/.idea
+

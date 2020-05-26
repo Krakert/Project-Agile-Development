@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="icon" type="image/png" href="../static/img/favicon.ico">
+    <!-- Global var -->
+    <script>
+        let idField = null;
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+            type="text/javascript">
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
+    <link rel="stylesheet" media="all" type="text/css" href="static/JS/sudokuJS.js">
+    <script src='static/JS/sudokuJS.js'></script>
+    <link rel='stylesheet' href='static/CSS/sudokuJS.css'/>
+
+    <script type="text/javascript" src="../static/JS/config.js"></script>
+    <script>
+        // Diffent Host address, see:
+        // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+        const host = config().HOST_MQTT_BROKER;
+        const ID = config().MQTT_ID;
+        const passWord = config().MQTT_PASSWORD;
+        // New topic for WebApp message`s
+        const topic = config().MQTT_TOPIC_MAIN;
+        const topicNAO = config().MQTT_TOPIC_SAY;
+        // Make new client
+        client = new Paho.MQTT.Client(host, "home");
+
+        // Connect
+        client.connect({userName: ID, password: passWord, onSuccess: onConnect});
+
+        // Clear the old status, just to be sure
+        function onConnect() {
+            client.subscribe(topic);
+        }
+
+        // If there is a message, fill in the active field
+        client.onMessageArrived = function (message) {
+            document.getElementById(idField).value = message.payloadString;
+        }
+    </script>
+
+</head>
+<body>
+<div class="navbar-header">
+    <a class="navbar-brand" href="/Minigames">Back</a>
+</div>
+<!--the only required html-->
+<div id="sudoku" class="sudoku-board">
+    <script>
+        const sudokuJS = $('#sudoku').sudokuJS({
+            difficulty: "medium"
+        });
+    </script>
+</div>
+<div>
+    <!--solve buttons-->
+    <button type="button" id="onestep" class="btn-solve-one">Los 1 stap op</button>
+    <button type="button" id="all" class="btn-solve-all">Los de hele sudoku op</button>
+    <script>
+        $("body").on("click", '.btn-solve-one', sudokuJS.solveStep);
+        $("body").on("click", '.btn-solve-all', sudokuJS.solveAll);
+    </script>
+</div>
+<script>
+    // Get the ID of the sudoku cell, to fill in the MQTT value
+    $("body").on("click", '.sudoku-board-cell', function () {
+        idField = $('.candidates', this).attr('id');
+    });
+</script>
+</body>
+</html>
