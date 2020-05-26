@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 *.idea
 *pyc
 *.xml
 */static/JS/config.js
+=======
+/Robot control/
+/.idea
+>>>>>>> CAD
