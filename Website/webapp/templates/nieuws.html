@@ -30,14 +30,22 @@
     </script>
     <title></title>
     <script>
-        var url = 'http://newsapi.org/v2/top-headlines?' +
-            'country=us&' +
-            'apiKey=4dc350ee8523445f85545f43001e506e';
-        var req = new Request(url);
-        fetch(req)
-            .then(function (response) {
-                console.log(response.json());
+        const date = new Date();
+        const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+        const qInTitle = "corona";
+        const from = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+        const apiKey = "4dc350ee8523445f85545f43001e506e";
+        const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?country=nl&apiKey=${apiKey}`;
+        const request = new Request(url);
+
+        fetch(request)
+            .then(response => response.json())
+            .then((news) => {
+                console.log(news);
             })
+            .catch(error => {
+                console.log(error);
+            });
     </script>
 </head>
 <body>
