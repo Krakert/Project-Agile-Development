@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 *.idea
-*pyc
+*.pyc
 *.xml
 */static/JS/config.js
-=======
 /Robot control/
-/.idea
->>>>>>> CAD
+/Robot control/.idea
+
