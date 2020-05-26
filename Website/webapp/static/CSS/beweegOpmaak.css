@@ -1,0 +1,116 @@
+
+.navbar-header{
+	height: 70px;
+	color: black;
+	left: 50%;
+}
+.navbar-brand{
+	font-size: 36px;
+
+}
+
+h1{
+	margin-bottom: 50px !important;
+	color: white;
+}
+.play-btn{
+	width: 50%;
+	height: 50%;
+	position: relative;
+	top: -50%;
+	left: 35%;
+	cursor : pointer;
+	transition: 0.5s;
+	opacity: 0;
+}
+
+.col-md-4:hover .play-btn{
+	opacity: 1;
+}
+
+.modal-content{
+	background: transparent !important;
+	border: none !important;
+}
+	/*
+	#groupDancing {
+    text-align:  center;
+    overflow: visible;
+    position: absolute;
+    width: 40%;
+    height: 75%;
+    right: 30%;
+    top: 168px;
+	}
+	#exercise {
+    text-align:  center;
+    overflow: visible;
+    position: absolute;
+    width: 40%;
+    height: 75%;
+    left:60%;
+    top: 168px;
+	}
+	#fitness {
+    text-align:  center;
+    overflow: visible;
+    position: absolute;
+    width: 40%;
+    height: 75%;
+    left: 5%;
+    top: 168px;
+	}
+	#SOLO_DANCE {
+    overflow: hidden;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    left: 0%;
+    top: 100px;
+		--web-animation: fadein 0.3s ease-out;
+		--web-action-type: page;
+		--web-action-target: Beweeg___SOLO_Dance.html;
+		cursor: pointer;
+		text-align: center;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 20px;
+		color: rgba(255,255,255,1);
+	}
+	#GROUP_DANCE {
+    overflow: hidden;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    right: 25%;
+    top: 100px;
+		--web-animation: fadein 0.3s ease-in;
+		--web-action-type: page;
+		--web-action-target: Beweeg___GROUP_DANCE.html;
+		cursor: pointer;
+		text-align: center;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 20px;
+		color: rgba(255,255,255,1);
+	}
+	#WORKOUT {
+    overflow: hidden;
+		position: absolute;
+		width: 50%;
+		height: 50%;
+    left:50%;
+		top: 100px;
+		--web-animation: fadein 0.3s ease-in;
+		--web-action-type: page;
+		--web-action-target: Beweeg___WORKOUT.html;
+		cursor: pointer;
+		text-align: center;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 20px;
+		color: rgba(255,255,255,1);
+	}*/

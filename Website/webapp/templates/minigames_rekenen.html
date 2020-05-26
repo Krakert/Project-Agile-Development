@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="icon" type="image/png" href="../static/img/favicon.ico">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- voor styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- url_for searches for a file in a location-->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/minigamesOpmaak.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- if else statement maak je aan door de '% tekens'-->
+    {% if title %}
+        <title> Game - {{ title }}</title>
+    {% else %}
+        <title>Home</title>
+    {% endif %}
+    <title></title>
+</head>
+<body>
+<div class="navbar-header">
+    <div class="container">
+        <a class="navbar-brand" href="/">Home</a>
+    </div>
+</div>
+
+<div id="frame">
+    <h2>Rekenen, kies een niveau:</h2>
+    <hr/>
+    <h4>
+        <div class="niveau1">
+            <a type="text" href="/rekenen/niveau1" class="text-click"> Voor niveau 1, toets: "1" (plus en min sommen t/m 15)</a>
+        </div>
+        <div class="niveau2">
+            <a type="text" href="/rekenen/niveau2" class="text-click"> Voor niveau 2, toets: "2" (plus, min & keer sommen t/m 15)</a>
+        </div>
+        <div>
+            <a type="text" href="/rekenen/niveau3" class="text-click"> Voor niveau 3, toets: "3" (plus, min, keer sommen t/m 50)</a>
+        </div>
+
+
+        <br>
+    </h4>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+        type="text/javascript">
+</script>
+<script type="text/javascript" src="../static/JS/config.js"></script>
+<script>
+    // Diffent Host address, see:
+    // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+    const host = config().HOST_MQTT_BROKER;
+    const ID = config().MQTT_ID;
+    const passWord = config().MQTT_PASSWORD;
+    // New topic for WebApp message`s
+    const topic = config().MQTT_TOPIC_MAIN;
+    // Make new client
+    client = new Paho.MQTT.Client(host, "home");
+
+    // Connect
+    client.connect({userName: ID, password: passWord, onSuccess: onConnect});
+
+    // Clear the old status, just to be sure
+    function onConnect() {
+        client.subscribe(topic);
+    }
+
+    var status = true;
+    // If there is a message, do something with it.
+    client.onMessageArrived = function (message) {
+        console.log(message.payloadString);
+        switch (message.payloadString) {
+            case '1':
+                window.location.href = '/rekenen/niveau1';
+                break;
+            case '2':
+                window.location.href = '/rekenen/niveau2';
+                break;
+            case '3':
+                window.location.href = '/rekenen/niveau3';
+                break;
+            case '#':
+                window.location.href = '/';
+                break;
+        }
+    }
+</script>
+</body>
+</html>
