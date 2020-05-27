@@ -9,16 +9,16 @@ app = Flask(__name__)
 @app.route('/index')
 @app.route('/Index')
 def main():
-    return render_template('index.html')
+    return render_template('index.html', title='PAD Team 7 NAO')
 
 @app.route('/sudoku')
 def sudoku():
-    return render_template('minigames_sudoku.html', title='Sudoku')
+    return render_template('minigames_sudoku.html', title='Maak een sudoku')
 
 @app.route('/Rekenen')
 @app.route('/rekenen')
 def Rekenen():
-    return render_template('minigames_rekenen.html', title='Rekenen')
+    return render_template('minigames_rekenen.html', title='Kies een niveau')
 
 @app.route('/rekenen/niveau1')
 def RekenenN1():
@@ -35,19 +35,19 @@ def RekenenN3():
 @app.route('/Minigames')
 @app.route('/minigames')
 def minigames():
-    return render_template('minigames.html', title='Minigames')
+    return render_template('minigames.html', title='Blijft bezig')
 
 
 @app.route('/Beweeg')
 @app.route('/beweeg')
 def beweeg():
-    return render_template('beweeg.html', title='Beweeg')
+    return render_template('beweeg.html', title='Lekker in beweeging')
 
 
 @app.route('/Ondersteuning')
 @app.route('/ondersteuning')
 def ondersteuning():
-    return render_template('ondersteuning.html', title='Ondersteuning')
+    return render_template('ondersteuning.html', title='Vraag naar hulp')
 
 
 @app.route('/Bestel')
@@ -58,8 +58,12 @@ def bestel():
 @app.route('/Nieuws')
 @app.route('/nieuws')
 def nieuws():
-    return render_template('nieuws.html', title='nieuws')
+    return render_template('nieuws.html', title='Blijf op de hoogte')
 
+@app.route('/Muziek')
+@app.route('/muziek')
+def muziek():
+    return render_template('muziek.html', title='Speel een lied')
 
 # debug = True, keeps the server alive
 if __name__ == '__main__':

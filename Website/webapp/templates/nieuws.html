@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta charset="utf-8">
     <!-- Bootstrap CSS -->
     <!-- voor styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -16,14 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
     <!--<link rel="stylesheet"  href="../static/main.css">
     <link rel="stylesheet" href="/css/main.css">-->
-    <!-- if else statement maak je aan door de '% tekens'-->
-    {% if title %}
-        <title> Update - {{ title }}</title>
-    {% else %}
-        <title>Home</title>
-    {% endif %}
-    <meta charset="utf-8">
-    <title>Nieuws</title>
+    <title>{{ title }}</title>
     <!--Download the Paho MQTT lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
             type="text/javascript">

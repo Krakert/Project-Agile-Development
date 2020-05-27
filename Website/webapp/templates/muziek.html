@@ -12,7 +12,7 @@
     {#    <!-- voor styling -->#}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <!-- url_for searches for a file in a location-->
     <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
     <!-- if else statement maak je aan door de '% tekens'-->
@@ -33,6 +33,7 @@
         const passWord = config().MQTT_PASSWORD;
         // New topic for WebApp message`s
         const topic = config().MQTT_TOPIC_MAIN;
+        const topicTalk = config().MQTT_TOPIC_SAY;
         // Make new client
         client = new Paho.MQTT.Client(host, "home");
 
@@ -44,26 +45,35 @@
             client.subscribe(topic);
         }
 
+        function sendMessage(toSend, whereToSend) {
+            const message = new Paho.MQTT.Message(toSend);
+            message.destinationName = whereToSend;
+            client.send(message);
+        }
+
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
-            console.log("Message Arrived: " + message.payloadString);
-
-            switch (message.payloadString) {
-                case '1':
-                    window.location.href = '/beweeg';
-                    break;
-                case '2':
-                    window.location.href = '/minigames';
-                    break;
-                case '3':
-                    window.location.href = '/muziek';
-                    break;
-                case '4':
-                    window.location.href = '/nieuws';
-                    break;
-                case '5':
-                    window.location.href = '/ondersteuning';
-                    break;
+            if (message.destinationName === topic) {
+                switch (message.payloadString) {
+                    case '1':
+                        sendMessage("motten", topicTalk);
+                        break;
+                    case '2':
+                        sendMessage("vrolijk", topicTalk);
+                        break;
+                    case '3':
+                        sendMessage("opzij", topicTalk);
+                        break;
+                    case '4':
+                        sendMessage("amsterdam", topicTalk);
+                        break;
+                    case '5':
+                        sendMessage("grachten", topicTalk);
+                        break;
+                    case '#':
+                        window.location.href = '/';
+                        break;
+                }
             }
         }
     </script>
@@ -73,21 +83,29 @@
     <a href="/" class="navbar-brand">Home</a>
 </div>
 <div class="container">
-    <a href="/beweeg" class="btn btn-color">Blijf lekker in beweging,<br>Toets 1</a>
+    <p class="btn btn-color" id="motten">Dorus - twee motten,<br>Toets 1</p>
 </div>
 <div class="container">
-    <a href="/Minigames" class="btn">Speel een minigame,<br>Toets 2</a>
+    <p class="btn" id="vrolijk">Herman van Veen - Ik ben vandaag zo vrolijk,<br>Toets 2</p>
 </div>
 <div class="container">
-    <a href="/muziek" class="btn btn-color">Luister naar muziek,<br>Toets 3</a>
+    <p class="btn btn-color" id="opzij">Hermna van Veen - Opzij, opzij, opzij,<br>Toets 3</p>
 </div>
 <div class="container">
-    <a href="/nieuws" class="btn">BLijf up to date met het laatste nieuws,<br>Toets 4</a>
+    <p class="btn " id="amsterdam">Johnny Jordaan - Geef mij maar Amsterdam,<br>Toets 4</p>
 </div>
 <div class="container">
-    <a href="/ondersteuning" class="btn btn-color">Voor hulp,<br>Toets 5</a>
+    <p class="btn btn-color" id="grachten">Wim Sonneveld - Aan de Amsterdamse grachten,<br>Toets 5</p>
 </div>
 </body>
+
+<script>
+    $("body").on("click", '.container', function () {
+        sendMessage($('.btn', this).attr('id'), topicTalk);
+    });
+</script>
+
+{##}
 {#<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"#}
 {#        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"#}
 {#        crossorigin="anonymous"></script>#}
@@ -97,5 +115,4 @@
 {#<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"#}
 {#        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"#}
 {#        crossorigin="anonymous"></script>#}
-</body>
 </html>
