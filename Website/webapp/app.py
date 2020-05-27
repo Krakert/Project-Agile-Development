@@ -49,11 +49,10 @@ def beweeg():
 def ondersteuning():
     return render_template('ondersteuning.html', title='Vraag naar hulp')
 
-
-@app.route('/Bestel')
-@app.route('/bestel')
-def bestel():
-    return render_template('bestel.html', title='Bestel')
+# @app.route('/Bestel')
+# @app.route('/bestel')
+# def bestel():
+#     return render_template('bestel.html', title='Bestel')
 
 @app.route('/Nieuws')
 @app.route('/nieuws')
