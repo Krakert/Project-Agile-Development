@@ -102,9 +102,7 @@ def main():
     # open sessie
     session = qi.Session()
     session.connect("padrick.robot.hva-robots.nl:9559")
-
     choose_song(3)
-
 
 if __name__ == "__main__":
     main()
