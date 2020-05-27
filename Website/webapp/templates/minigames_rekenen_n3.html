@@ -20,13 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <!-- if else statement maak je aan door de '% tekens'-->
-    {% if title %}
-        <title> Game - {{ title }}</title>
-    {% else %}
-        <title>Home</title>
-    {% endif %}
-    <title></title>
+    <title>{{ title }}</title>
 </head>
 <body>
 <div class="navbar-header">
@@ -41,7 +35,7 @@
     <h4>
         <div class="number1">
             <p id="textField" class="text-static"></p>
-        <div>
+            <div>
 
                 <p id="textField1"></p>
     </h4>
@@ -70,7 +64,10 @@
     function onConnect() {
         client.subscribe(topicMain);
         client.subscribe(topicNAO);
-        var message = new Paho.MQTT.Message(a + "+" + b);
+        /* TODO:
+            Run code
+       */
+        const message = new Paho.MQTT.Message(a + operators[operator] + b);
         message.destinationName = topicNAO;
         client.send(message);
     }
@@ -106,7 +103,9 @@
     if (operator === 1) {
         b = Math.floor(Math.random() * MAX_NUMBER + 1);
         a = Math.floor(Math.random() * MAX_NUMBER + b);
-        if (a > MAX_NUMBER) { a = MAX_NUMBER;}
+        if (a > MAX_NUMBER) {
+            a = MAX_NUMBER;
+        }
     } else {
         a = Math.floor(Math.random() * MAX_NUMBER + 1);
         b = Math.floor(Math.random() * MAX_NUMBER + 1);

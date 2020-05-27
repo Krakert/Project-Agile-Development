@@ -21,12 +21,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <!-- if else statement maak je aan door de '% tekens'-->
-    {% if title %}
-        <title> Game - {{ title }}</title>
-    {% else %}
-        <title>Home</title>
-    {% endif %}
-    <title></title>
+    <title>{{ title }}</title>
 </head>
 <body>
 <div class="navbar-header">
@@ -70,7 +65,10 @@
     function onConnect() {
         client.subscribe(topicMain);
         client.subscribe(topicNAO);
-        var message = new Paho.MQTT.Message(a + "+" + b);
+        /* TODO:
+            Run code
+        */
+        const message = new Paho.MQTT.Message(a + operators[operator] + b);
         message.destinationName = topicNAO;
         client.send(message);
     }

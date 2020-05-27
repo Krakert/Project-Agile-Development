@@ -5,15 +5,6 @@
 
 (function (window, $, undefined) {
     'use strict';
-    /*TODO:
-        --possible additions--
-        toggle edit candidates
-        undo/redo
-    */
-
-    /**
-     * Define a jQuery plugin
-     */
     $.fn.sudokuJS = function (opts) {
 
         /*
@@ -770,7 +761,7 @@
          * -----------------------------------------------------------------*/
         function singleCandidate() {
             //before we start with candidate strategies, we need to update candidates from last round:
-            visualEliminationOfCandidates(); //TODO: a bit hackyy, should probably not be here
+            visualEliminationOfCandidates();
 
             //for each cell
 
@@ -1564,7 +1555,6 @@
             // DRAW RANDOM CANDIDATE
             // don't draw already invalidated candidates for cell
             var invalids = invalidCandidates && invalidCandidates[cellIndex];
-            // TODO: don't use JS filter - not supported enough(?)
             var candidates = board[cellIndex].candidates.filter(function (candidate) {
                 if (!candidate || (invalids && contains(invalids, candidate)))
                     return false;
