@@ -1,22 +1,14 @@
 #opgezocht door Renze, http://doc.aldebaran.com/2-8/naoqi/audio/alaudioplayer-api.html#ALAudioPlayerProxy::playFile
 from naoqi import qi
-import motion
 import time
-"""""
-def stepForwardOrBackward(Distance):                   dit is een functie om de robot te laten lopen, let op werkt nog niet volledig zuiver!
-    # open sessie
-    session = qi.Session()
-    session.connect("padrick.robot.hva-robots.nl:9559")
 
-    #bewegings service
-    motion_service = session.service("ALMotion")
-    X = Distance
-    Y = 0.0
-    Theta = 0.0
-    Frequency = 0.0
-    motion_service.moveToward(X, Y, Theta, [["Frequency", Frequency]])
-    time.sleep(4.0)
-"""""
+#simpele functie om de nao te laten lopen
+def walk(session, moveAmount = []):
+    motion = session.service("ALMotion")
+    motion.moveInit()
+    motion.moveTo(moveAmount[0], moveAmount[1], 0)
+
+
 def choose_song(choice):
     # open sessie
     session = qi.Session()
@@ -51,7 +43,7 @@ def choose_song(choice):
     song_2 = "/home/nao/wav/goosser4_1587549611.mp3"
     song_3 = "/home/nao/wav/goosser4_1587549697.mp3"
     song_4 = "/home/nao/wav/goosser4_1587549774.mp3"
-    song_5 = "/home/nao/wav/goosser4_1587549697.mp3"
+    song_5 = "/home/nao/wav/goosser4_1587549936.mp3"
 
     song_name1 = "Aan de amsterdamse grachten van Wim Sonneveld"
     song_name2 = "Geef mij maar Amsterdam gekozen van Johnny Jordaan"
@@ -63,29 +55,45 @@ def choose_song(choice):
     time.sleep(2.0)
 
     if choice is 1:
+        fut1 = qi.async(animation_player.run, wave)
+        fut2 = qi.async(audio_Player.playFile, song_1)
         tts.say("U heeft het nummer" + song_name1 + " gekozen.")
-        qi.async(animation_player.run, wave)
-        qi.async(audio_Player.playFile, song_1)
+        fut1.wait()
+        fut2.wait()
+        time.sleep(1)
         tts.say("Wat een klassieker!")
     elif choice is 2:
+        fut1 = qi.async(animation_player.run, wave)
+        fut2 = qi.async(audio_Player.playFile, song_2)
         tts.say("U heeft het nummer" + song_name2 + " gekozen.")
-        qi.async(animation_player.run, wave)
-        qi.async(audio_Player.playFile, song_2)
+        fut1.wait()
+        fut2.wait()
+        time.sleep(1)
         tts.say("Geef mij maar Amsterdam, want in Rotjeknor heb ik niks te zoeken.")
     elif choice is 3:
+        fut1 = qi.async(animation_player.run, wave)
+        fut2 = qi.async(audio_Player.playFile, song_3)
         tts.say("U heeft het nummer" + song_name3 + " gekozen.")
-        qi.async(animation_player.run, wave)
-        qi.async(audio_Player.playFile, song_3)
+        fut1.wait()
+        fut2.wait()
+        time.sleep(1)
         tts.say("Nou voor uit dan maar. Ik ga wel een stapje opzij.")
+        walk(session, [0, 0.1])
     elif choice is 4:
+        fut1 = qi.async(animation_player.run, wave)
+        fut2 = qi.async(audio_Player.playFile, song_4)
         tts.say("U heeft het nummer" + song_name4 + " gekozen.")
-        qi.async(animation_player.run, wave)
-        qi.async(audio_Player.playFile, song_4)
+        fut1.wait()
+        fut2.wait()
+        time.sleep(1)
         tts.say("Ik ben van dit nummer een stukje vrolijker geworden. U hopelijk ook!")
     elif choice is 5:
+        fut1 = qi.async(animation_player.run, wave)
+        fut2 = qi.async(audio_Player.playFile, song_5)
         tts.say("U heeft het nummer" + song_name5 + " gekozen.")
-        qi.async(animation_player.run, wave)
-        qi.async(audio_Player.playFile, song_5)
+        fut1.wait()
+        fut2.wait()
+        time.sleep(1)
         tts.say("aaah altijd leuk zo een liedje van vroeger.")
     else:
         tts.say("Sorry, deze optie bestaat niet.")
@@ -95,7 +103,7 @@ def main():
     session = qi.Session()
     session.connect("padrick.robot.hva-robots.nl:9559")
 
-    choose_song(6)
+    choose_song(3)
 
 
 if __name__ == "__main__":
