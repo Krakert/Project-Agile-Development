@@ -35,13 +35,16 @@
     <hr/>
     <h4>
         <div class="niveau1">
-            <a type="text" href="/rekenen/niveau1" class="text-click"> Voor niveau 1, toets: "1" (plus en min sommen t/m 15)</a>
+            <a type="text" href="/rekenen/niveau1" class="text-click"> Voor niveau 1, toets: "1" (plus en min sommen t/m
+                15)</a>
         </div>
         <div class="niveau2">
-            <a type="text" href="/rekenen/niveau2" class="text-click"> Voor niveau 2, toets: "2" (plus, min & keer sommen t/m 15)</a>
+            <a type="text" href="/rekenen/niveau2" class="text-click"> Voor niveau 2, toets: "2" (plus, min & keer
+                sommen t/m 15)</a>
         </div>
         <div>
-            <a type="text" href="/rekenen/niveau3" class="text-click"> Voor niveau 3, toets: "3" (plus, min, keer sommen t/m 50)</a>
+            <a type="text" href="/rekenen/niveau3" class="text-click"> Voor niveau 3, toets: "3" (plus, min, keer sommen
+                t/m 50)</a>
         </div>
 
 
@@ -61,6 +64,7 @@
     const passWord = config().MQTT_PASSWORD;
     // New topic for WebApp message`s
     const topic = config().MQTT_TOPIC_PHONE;
+
     // Make new client
     client = new Paho.MQTT.Client(host, "home");
 
@@ -70,14 +74,14 @@
     // Clear the old status, just to be sure
     function onConnect() {
         client.subscribe(topic);
-            sendMessage('2.2', config().MQTT_TOPIC_PY);
-        }
+        sendMessage('2.2', config().MQTT_TOPIC_PY);
+    }
 
-        function sendMessage(toSend, whereToSend) {
-            const message = new Paho.MQTT.Message(toSend);
-            message.destinationName = whereToSend;
-            client.send(message);
-        }
+    function sendMessage(toSend, whereToSend) {
+        const message = new Paho.MQTT.Message(toSend);
+        message.destinationName = whereToSend;
+        client.send(message);
+    }
 
     var status = true;
     // If there is a message, do something with it.

@@ -47,8 +47,9 @@
             console.log("connected")
             client.subscribe(topic);
             client.subscribe(topicNAOToSay);
-            sendMessage(a + operators[operator] + b, topicNAOToSay)
             sendMessage('2.2.1', config().MQTT_TOPIC_PY);
+            sendMessage( "De som is " + a + operators[operator] + b, topicNAOToSay)
+
         }
 
         function sendMessage(toSend, whereToSend) {

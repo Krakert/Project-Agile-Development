@@ -50,7 +50,7 @@
             // Let Python know where we are on the website
             sendMessage('2.2.3', config().MQTT_TOPIC_PY);
             // Send the sum so the nao will say it
-            sendMessage(a + operators[operator] + b, topicNAOToSay)
+            sendMessage( "De som is " + a + operators[operator] + b, topicNAOToSay)
 
         }
 

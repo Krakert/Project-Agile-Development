@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+
     <link rel="icon" type="image/png" href="../static/img/favicon.ico">
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -14,6 +15,7 @@
 
     <!-- url_for searches for a file in a location-->
     <link rel="stylesheet" type="text/css" href="../static/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/nieuws.css">
     <!--<link rel="stylesheet"  href="../static/main.css">
     <link rel="stylesheet" href="/css/main.css">-->
     <title>{{ title }}</title>
@@ -54,8 +56,22 @@
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
             console.log(message.payloadString);
+            if (message.destinationName === topic) {
+                switch (message.payloadString) {
+                    case '1':
+                        sendMessage(document.getElementById("column1").textContent, topicTalk);
+                        break;
+                    case '2':
+                        sendMessage(document.getElementById("column2").textContent, topicTalk);
+                        break;
+                    case '3':
+                        sendMessage(document.getElementById("column3").textContent, topicTalk);
+                        break;
+                }
+            }
         }
 
+        var newsJSON;
         const proxyUrl = "https://cors-anywhere.herokuapp.com/"
         const apiKey = "4dc350ee8523445f85545f43001e506e";
         const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?country=nl&apiKey=${apiKey}`;
@@ -63,11 +79,36 @@
         fetch(request)
             .then(response => response.json())
             .then((news) => {
-                console.log(news);
+                newsJSON = news;
+                // Make a array with 3 random articles
+                console.log(newsJSON)
+
+                articlesNotEmpty = [];
+                for (let i = 0; i < 20; i++) {
+                    if (newsJSON.articles[i].description !== null) {
+                        articlesNotEmpty.push(newsJSON.articles[i]);
+                    }
+                }
+
+                console.log(articlesNotEmpty);
+                const articlesSelected = [
+                    articlesNotEmpty[Math.floor(Math.random() * (articlesNotEmpty.length - 1))],
+                    articlesNotEmpty[Math.floor(Math.random() * (articlesNotEmpty.length - 1))],
+                    articlesNotEmpty[Math.floor(Math.random() * (articlesNotEmpty.length - 1))]
+                ];
+                header1.innerHTML = articlesSelected[0].title.split(" - ", 1);
+                header2.innerHTML = articlesSelected[1].title.split(" - ", 1);
+                header3.innerHTML = articlesSelected[2].title.split(" - ", 1);
+
+                column1.innerHTML = articlesSelected[0].description;
+                column2.innerHTML = articlesSelected[1].description;
+                column3.innerHTML = articlesSelected[2].description;
+
             })
             .catch(error => {
                 console.log(error);
             });
+
     </script>
 </head>
 <body>
@@ -77,9 +118,18 @@
     </div>
 </div>
 </div>
-
-<div class="wrapper">
-    <div class="container">
+<div class="row">
+    <div class="column" onclick='sendMessage(document.getElementById("column1").textContent, topicTalk)'>
+        <p id="header1" class="texts-header"></p>
+        <div id="column1" class="texts-column"></div>
+    </div>
+    <div class="column" onclick='sendMessage(document.getElementById("column2").textContent, topicTalk)'>
+        <p id="header2" class="texts-header"></p>
+        <div id="column2" class="texts-column"></div>
+    </div>
+    <div class="column" onclick='sendMessage(document.getElementById("column3").textContent, topicTalk)'>
+        <p id="header3" class="texts-header"></p>
+        <div id="column3" class="texts-column"></div>
     </div>
 </div>
 </body>

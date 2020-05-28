@@ -4,14 +4,15 @@ MQTT = {
     "BROKER": "mqtt.hva-robots.nl",
     "TOPIC_SPEAK": "krakers/PAD/NAO/SAY",
     "TOPIC_NAVI": "krakers/PAD/NAVI",
+    "TOPIC_MAIN": "krakers/PAD",
     "USERNAME": "krakers",
     "PASSWORD": "kuNH5LNWptsGrPfL6Azh"
 }
 
 NAO = {
     "NAME": "PADrick",
-    "IP_ADRESS": "padrick.robot.hva-robots.nl",  # 127.0.0.1 | padrick.robot.hva-robots.nl
-    "PORT": 9559  # 9559
+    "IP_ADRESS": "127.0.0.1",  # 127.0.0.1 | padrick.robot.hva-robots.nl
+    "PORT": 54498  # 9559
 }
 
 DICTIONARY = [
