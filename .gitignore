@@ -3,3 +3,8 @@
 *.xml
 */static/JS/config.js
 */Robot/configRobot.py
+Website/webapp/static/JS/app.js
+Website/webapp/static/JS/jquery-3.3.1.min.js
+Website/webapp/static/JS/materialize.min.js
+Website/webapp/static/CSS/materialize.min.css
+
