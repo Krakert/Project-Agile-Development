@@ -112,7 +112,7 @@ a {
     font-weight: bolder;
     font-family: sans-serif;
     text-align: center;
-    text-shadow: 0.5px 0.5px #fff;
+    /*text-shadow: 0.5px 0.5px #fff;*/
 }
 
 .carousel-caption h5 {
@@ -120,7 +120,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 10px;
-    text-shadow: 2px 2px #000;
+    /*text-shadow: 2px 2px #000;*/
     position: relative;
     text-align: center;
 }
@@ -130,14 +130,14 @@ a {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-top: 10px;
-  text-shadow: 2px 2px #000;
+  /*text-shadow: 2px 2px #000;*/
   position: relative;
   text-align: center;
 }
 
 .carousel-caption a {
     text-transform: uppercase;
-    text-shadow: 2px 2px #000;
+    /*text-shadow: 2px 2px #000;*/
     background: #262626;
     padding: 10px 30px;
     display: inline-block;
