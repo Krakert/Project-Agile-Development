@@ -16,14 +16,12 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
     <title>{{ title }}</title>
-
+    <!--Download the Paho MQTT lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
             type="text/javascript">
     </script>
-
     <script type="text/javascript" src="../static/JS/config.js"></script>
     <script>
-
         // Diffent Host address, see:
         // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
         const host = config().HOST_MQTT_BROKER;
@@ -31,14 +29,13 @@
         const passWord = config().MQTT_PASSWORD;
         // New topic for WebApp message`s
         const topic = config().MQTT_TOPIC_PHONE;
-        const topicTalk = config().MQTT_TOPIC_SAY;
         // Make new client
-        client = new Paho.MQTT.Client(host, "home");
+        client = new Paho.MQTT.Client(host, 'beweeg');
 
         // Connect
         client.connect({userName: ID, password: passWord, onSuccess: onConnect});
 
-        // Clear the old status, just to be sure
+        // When you have connection, sub
         function onConnect() {
             client.subscribe(topic);
             sendMessage('5', config().MQTT_TOPIC_PY);
@@ -52,26 +49,13 @@
 
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
-            console.log(message.payloadString);
-            if (message.destinationName === topic) {
-                if (message.payloadString === '1') {
-                    changeSlide(false);
-                } else if (message.payloadString === '2') {
-                    changeSlide(true);
-                }
+            console.log("Message Arrived: " + message.payloadString);
+            if (message.payloadString == '#') {
+                window.location.href = '/';
             }
         }
-
-
-        function changeSlide(dir) {
-            if (dir) {
-                document.getElementById("button-next").click();
-            } else {
-                document.getElementById("button-prev").click();
-            }
-        }
-
     </script>
+
 </head>
 <body>
 <div class="navbar-header">
@@ -81,20 +65,22 @@
 </div>
 <br>
 <div class="container">
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  data-interval="15000">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="carousel-caption d-none d-md-block">
-                <h4>GEBRUIKERSHANDLEIDING</h4>
-                <br>
-                <h5>USERMANUAL</h5>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="15000">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!--img src="static\img\pizza_hawaii3.jpg" class="d-block w-100" alt="...">-->
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>GEBRUIKERSHANDLEIDING</h4>
+                    <br>
+                    <h5>USERMANUAL</h5>
+                </div>
             </div>
             <div class="carousel-item">
                 <div class="carousel-caption d-none d-md-block">
@@ -146,13 +132,11 @@
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" id="button-prev" role="button"
-           data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" id="button-next" role="button"
-           data-slide="next">
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>

@@ -58,7 +58,7 @@
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
             console.log("Message Arrived: " + message.payloadString);
-            if (message.payloadString === '#') {
+            if (message.payloadString == '#') {
                 window.location.href = '/';
             }
         }
