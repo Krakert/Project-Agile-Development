@@ -32,7 +32,7 @@
         const ID = config().MQTT_ID;
         const passWord = config().MQTT_PASSWORD;
         // New topic for WebApp message`s
-        const topic = config().MQTT_TOPIC_MAIN;
+        const topic = config().MQTT_TOPIC_PHONE;
         const topicTalk = config().MQTT_TOPIC_SAY;
         // Make new client
         client = new Paho.MQTT.Client(host, "home");
@@ -43,6 +43,7 @@
         // Clear the old status, just to be sure
         function onConnect() {
             client.subscribe(topic);
+            sendMessage('3', config().MQTT_TOPIC_PY);
         }
 
         function sendMessage(toSend, whereToSend) {

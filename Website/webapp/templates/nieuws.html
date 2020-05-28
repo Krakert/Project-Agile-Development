@@ -22,15 +22,44 @@
             type="text/javascript">
     </script>
     <title></title>
+    <script type="text/javascript" src="../static/JS/config.js"></script>
     <script>
-        const date = new Date();
+
+        // Diffent Host address, see:
+        // https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+        const host = config().HOST_MQTT_BROKER;
+        const ID = config().MQTT_ID;
+        const passWord = config().MQTT_PASSWORD;
+        // New topic for WebApp message`s
+        const topic = config().MQTT_TOPIC_PHONE;
+        const topicTalk = config().MQTT_TOPIC_SAY;
+        // Make new client
+        client = new Paho.MQTT.Client(host, "home");
+
+        // Connect
+        client.connect({userName: ID, password: passWord, onSuccess: onConnect});
+
+        // Clear the old status, just to be sure
+        function onConnect() {
+            client.subscribe(topic);
+            sendMessage('4', config().MQTT_TOPIC_PY);
+        }
+
+        function sendMessage(toSend, whereToSend) {
+            const message = new Paho.MQTT.Message(toSend);
+            message.destinationName = whereToSend;
+            client.send(message);
+        }
+
+        // If there is a message, redirect.
+        client.onMessageArrived = function (message) {
+            console.log(message.payloadString);
+        }
+
         const proxyUrl = "https://cors-anywhere.herokuapp.com/"
-        const qInTitle = "corona";
-        const from = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
         const apiKey = "4dc350ee8523445f85545f43001e506e";
         const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?country=nl&apiKey=${apiKey}`;
         const request = new Request(url);
-
         fetch(request)
             .then(response => response.json())
             .then((news) => {

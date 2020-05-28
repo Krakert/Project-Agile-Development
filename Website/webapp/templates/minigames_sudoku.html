@@ -29,7 +29,7 @@
         const ID = config().MQTT_ID;
         const passWord = config().MQTT_PASSWORD;
         // New topic for WebApp message`s
-        const topic = config().MQTT_TOPIC_MAIN;
+        const topic = config().MQTT_TOPIC_PHONE;
         const topicNAO = config().MQTT_TOPIC_SAY;
         // Make new client
         client = new Paho.MQTT.Client(host, "home");
@@ -63,7 +63,7 @@
 </div>
 <div>
     <!--solve buttons-->
-    <button type="button" id="onestep" class="btn-solve-one">Los 1 stap op</button>
+    <button type="button" id="onestep" class="btn-solve-one">Los 1 vakje op</button>
     <button type="button" id="all" class="btn-solve-all">Los de hele sudoku op</button>
     <script>
         $("body").on("click", '.btn-solve-one', sudokuJS.solveStep);

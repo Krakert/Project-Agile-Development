@@ -21,7 +21,7 @@
         const ID = config().MQTT_ID;
         const passWord = config().MQTT_PASSWORD;
         // New topic for WebApp message`s
-        const topic = config().MQTT_TOPIC_MAIN;
+        const topic = config().MQTT_TOPIC_PHONE;
         // Make new client
         client = new Paho.MQTT.Client(host, "Webclient");
 
@@ -31,6 +31,13 @@
         // When you have connection, sub
         function onConnect() {
             client.subscribe(topic);
+            sendMessage('2', config().MQTT_TOPIC_PY);
+        }
+
+        function sendMessage(toSend, whereToSend) {
+            const message = new Paho.MQTT.Message(toSend);
+            message.destinationName = whereToSend;
+            client.send(message);
         }
 
         // If there is a message, redirect.

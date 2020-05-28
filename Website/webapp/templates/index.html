@@ -32,7 +32,7 @@
         const ID = config().MQTT_ID;
         const passWord = config().MQTT_PASSWORD;
         // New topic for WebApp message`s
-        const topic = config().MQTT_TOPIC_MAIN;
+        const topic = config().MQTT_TOPIC_PHONE;
         // Make new client
         client = new Paho.MQTT.Client(host, "home");
 
@@ -42,12 +42,19 @@
         // Clear the old status, just to be sure
         function onConnect() {
             client.subscribe(topic);
+            sendMessage('0', config().MQTT_TOPIC_PY);
         }
+
+        function sendMessage(toSend, whereToSend) {
+            const message = new Paho.MQTT.Message(toSend);
+            message.destinationName = whereToSend;
+            client.send(message);
+        }
+
 
         // If there is a message, redirect.
         client.onMessageArrived = function (message) {
             console.log("Message Arrived: " + message.payloadString);
-
             switch (message.payloadString) {
                 case '1':
                     window.location.href = '/beweeg';
@@ -82,7 +89,7 @@
     <a href="/muziek" class="btn btn-color">Luister naar muziek,<br>Toets 3</a>
 </div>
 <div class="container">
-    <a href="/nieuws" class="btn">BLijf up to date met het laatste nieuws,<br>Toets 4</a>
+    <a href="/nieuws" class="btn">Blijf up to date met het laatste nieuws,<br>Toets 4</a>
 </div>
 <div class="container">
     <a href="/ondersteuning" class="btn btn-color">Voor hulp,<br>Toets 5</a>

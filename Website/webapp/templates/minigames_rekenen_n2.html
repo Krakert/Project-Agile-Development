@@ -53,7 +53,7 @@
     const ID = config().MQTT_ID;
     const passWord = config().MQTT_PASSWORD;
     // New topic for WebApp message`s
-    const topic = config().MQTT_TOPIC_MAIN;
+    const topic = config().MQTT_TOPIC_PHONE;
     const topicNAO = config().MQTT_TOPIC_SAY;
     // Make new client
     client = new Paho.MQTT.Client(host, "home");
@@ -97,7 +97,7 @@
     const MAX_NUMBER = 15;
     var a;
     var b;
-    const operators = ['+', '-', '*'];
+    const operators = ['+', '-', 'x'];
     const operator = Math.floor(Math.random() * operators.length);
     console.log(operator);
 
