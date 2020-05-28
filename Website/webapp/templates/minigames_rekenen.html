@@ -70,7 +70,14 @@
     // Clear the old status, just to be sure
     function onConnect() {
         client.subscribe(topic);
-    }
+            sendMessage('2.2', config().MQTT_TOPIC_PY);
+        }
+
+        function sendMessage(toSend, whereToSend) {
+            const message = new Paho.MQTT.Message(toSend);
+            message.destinationName = whereToSend;
+            client.send(message);
+        }
 
     var status = true;
     // If there is a message, do something with it.
