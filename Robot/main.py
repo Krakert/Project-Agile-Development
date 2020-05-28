@@ -53,7 +53,7 @@ def on_message(client, userdata, msg):
 
 
 # Set dataFromMqtt back to Null
-def updateToZeo(topic):
+def updateToZero(topic):
     client.publish(topic, "")
 
 
