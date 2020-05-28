@@ -1,7 +1,7 @@
 body {
     background: #d3d3d3;
 }
-
+html, body {margin: 0; height: 100vh; overflow: hidden}
 .navbar-header {
     margin-bottom: 30px;
     height: 70px;
@@ -93,6 +93,7 @@ a {
 }*/
 
 .carousel-item {
+    position: relative;
     height: 100vh;
     min-height: 300px;
     background: no-repeat center center scroll;
@@ -105,6 +106,7 @@ a {
 }
 
 .carousel-caption p {
+    position: relative;
     font-size: 24px;
     color: black;
     font-weight: bolder;
@@ -117,8 +119,20 @@ a {
     font-size: 45px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top: 25px;
+    margin-top: 10px;
     text-shadow: 2px 2px #000;
+    position: relative;
+    text-align: center;
+}
+
+.carousel-caption h4{
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 10px;
+  text-shadow: 2px 2px #000;
+  position: relative;
+  text-align: center;
 }
 
 .carousel-caption a {
@@ -142,4 +156,3 @@ img {
     border-radius: 2px;
     text-align: center;
 }
-
