@@ -1,4 +1,5 @@
 #opgezocht door Renze, http://doc.aldebaran.com/2-8/naoqi/audio/alaudioplayer-api.html#ALAudioPlayerProxy::playFile
+import sys
 from naoqi import qi
 import time
 import random
@@ -12,8 +13,6 @@ def walk(session, moveAmount = []):
 """""
 
 def choose_song(choice):
-    #keuze vanaf nummer 1
-    choice = choice - 1
 
     # open sessie
     session = qi.Session()
@@ -53,6 +52,16 @@ def choose_song(choice):
                      "/home/nao/wav/goosser4_1587549697.mp3",
                      "/home/nao/wav/goosser4_1587549774.mp3",
                      "/home/nao/wav/goosser4_1587549936.mp3"]
+
+    #keuze vanaf nummer 1
+    choice = choice - 1
+    
+    #fouten afvang verkeerde input
+    nummers_lengte = len(song_names)
+    if choice > nummers_lengte or choice < nummers_lengte:
+        tts.say("Sorry dit is geen optie.")
+        sys.exit()
+
     #random tekst voor na het afspelen van het nummer.
     eind_lied_tekst = ["Dat was een leuk liedje.",
                        "Was dat niet fantastisch?!",
@@ -78,7 +87,7 @@ def main():
     session.connect("padrick.robot.hva-robots.nl:9559")
     tts = session.service("ALTextToSpeech")
     tts.say("hallo ik doe het")
-    #choose_song(1)
+    choose_song(-1)
 
 if __name__ == "__main__":
     main()
