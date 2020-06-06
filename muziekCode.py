@@ -87,8 +87,7 @@ def main():
     session = qi.Session()
     session.connect("padrick.robot.hva-robots.nl:9559")
     tts = session.service("ALTextToSpeech")
-    tts.say("ching chong, chinees is lekker")
-    choose_song(4)
+    choose_song(1)
 
 if __name__ == "__main__":
     main()
