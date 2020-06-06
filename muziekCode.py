@@ -54,11 +54,12 @@ def choose_song(choice):
                      "/home/nao/wav/goosser4_1587549936.mp3"]
 
     #keuze vanaf nummer 1
-    choice = choice - 1
-    
+    choice = choice -1
+
     #fouten afvang verkeerde input
     nummers_lengte = len(song_names)
-    if choice > nummers_lengte or choice < nummers_lengte:
+    min_nummers = 0
+    if choice > nummers_lengte or choice < min_nummers:
         tts.say("Sorry dit is geen optie.")
         sys.exit()
 
@@ -86,8 +87,8 @@ def main():
     session = qi.Session()
     session.connect("padrick.robot.hva-robots.nl:9559")
     tts = session.service("ALTextToSpeech")
-    tts.say("hallo ik doe het")
-    choose_song(-1)
+    tts.say("ching chong, chinees is lekker")
+    choose_song(4)
 
 if __name__ == "__main__":
     main()
